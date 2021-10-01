@@ -1,0 +1,25 @@
+Course course1 = new Course("BT1CWD1", "BSc (Hons) Computing and Web Development");
+Student student1 = new Student("Tomas Pinto", 22021858);
+course1.print();
+ --------------------------------
+   App211: Course Details
+ --------------------------------
+
+ Course Code: BT1CWD1: BSc (Hons) Computing and Web Development
+
+student1.print();
+ Student ID: 22021858 Name: Tomas Pinto
+student1.enrol(course1);
+student1.printCourse();
+ --------------------------------
+   App211: Course Details
+ --------------------------------
+
+ Course Code: BT1CWD1: BSc (Hons) Computing and Web Development
+
+student1.getName()
+    returned String "Tomas Pinto"
+student1.print();
+ Student ID: 22021858 Name: Tomas Pinto
+student1.getID()
+    returned int 22021858

@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * The Student class contains essential information that identifies 
  * a student at BNU.  The class also contains information 

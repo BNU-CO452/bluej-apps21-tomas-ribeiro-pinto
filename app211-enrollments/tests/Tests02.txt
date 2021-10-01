@@ -1,0 +1,30 @@
+Module module2 = new Module("CO452", "Programming Concepts", 0);
+module2.print();
+ --------------------------------
+   App211: Course Details
+ --------------------------------
+
+   Module Title: Programming Concepts
+   Module Code:  CO452
+   Credit Value: 0
+module2.setCreditValue(15);
+module2.print();
+ --------------------------------
+   App211: Course Details
+ --------------------------------
+
+   Module Title: Programming Concepts
+   Module Code:  CO452
+   Credit Value: 15
+course1.printModule();
+    Exception occurred.
+course1.addModule(module2);
+course1.printModule();
+ --------------------------------
+   App211: Course Details
+ --------------------------------
+
+   Module Title: Programming Concepts
+   Module Code:  CO452
+   Credit Value: 15
+   Course Code: BT1CWD1: BSc (Hons) Computing and Web Development
