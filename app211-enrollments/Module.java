@@ -7,20 +7,20 @@
 public class Module
 {
     // Module's Code
-    private String module_code;
+    private String code;
     // Title of the Module
-    private String module_title;
+    private String title;
     // Credit Value of the Module
     private int credit_value;
 
     /**
      * Create a new Module with a code, title and credit value.
      */
-    public Module(String module_code, String module_title, int credit_value)
+    public Module(String code, String title, int credit_value)
     {
        
-        this.module_code = module_code;
-        this.module_title = module_title;
+        this.code = code;
+        this.title = title;
         this.credit_value = credit_value;
     }
 
@@ -30,7 +30,7 @@ public class Module
     public String getCode()
     {
         // put your code here
-        return module_code;
+        return code;
     }
     
     /**
@@ -39,7 +39,7 @@ public class Module
     public String getTitle()
     {
         // put your code here
-        return module_title;
+        return title;
     }
 
         /**
@@ -73,8 +73,8 @@ public class Module
     public void print()
     {
         printHeading();
-        System.out.println("   Module Title: " + module_title);
-        System.out.println("   Module Code:  " + module_code);
+        System.out.println("   Module Title: " + title);
+        System.out.println("   Module Code:  " + code);
         System.out.println("   Credit Value: " + credit_value);
     }
     
