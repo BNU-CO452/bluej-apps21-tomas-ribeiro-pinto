@@ -5,6 +5,7 @@ import java.awt.geom.*;
  * A circle that can be manipulated and that draws itself on a canvas.
  * 
  * @author  Michael Kölling and David J. Barnes
+ * @author  Tomás Pinto
  * @version 1.0  (15 July 2000)
  */
 
