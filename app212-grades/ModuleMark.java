@@ -9,7 +9,7 @@ public class ModuleMark
 {
     private int mark;
     private Module module;
-    
+
     /**
      * Constructor for objects of class ModuleMark
      */
@@ -18,7 +18,6 @@ public class ModuleMark
         mark = 0;
         this.module = module;
     }
-    
     public int getValue()
     {
         return mark;

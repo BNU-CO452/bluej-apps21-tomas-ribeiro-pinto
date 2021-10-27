@@ -4,7 +4,8 @@ import java.util.ArrayList;
  * that enrolled students may want to complete
  *
  * @author Derek Peacock and Nicholas Day
- * @version 0.1 11/Sep/2020
+ * Modified by Tomás Pinto
+ * @version 20th October 2021
  */
 public class Course
 {
@@ -19,7 +20,7 @@ public class Course
      
     public Course()
     {
-        this("G400", "BSc Computing");
+        this("BT1CWD1", "BSc Computing and Web Development");
     }
     
     /**
@@ -43,7 +44,14 @@ public class Course
      */
     public void createModules()
     {
-
+    Module co450 = new Module("CO450", "Computer Architectures");
+    Module co452 = new Module("CO452", "Programming Concepts");
+    Module co454 = new Module("CO454", "Digi-Tech");
+    Module co456 = new Module("CO456", "Web Development");
+    modules.add(co450);
+    modules.add(co452);
+    modules.add(co454);
+    modules.add(co456);
     }
     
     public void addModule(Module module)
@@ -58,8 +66,19 @@ public class Course
      * 
      */
     public Grades convertToGrade(int mark)
-    {
-        return Grades.NS;
+    {   
+        if (mark > 0 && mark <= 39)
+            return Grades.F;
+        else if (mark > 39 && mark <=49)
+            return Grades.D;
+        else if (mark > 49 && mark <=59)
+            return Grades.C;
+        else if (mark > 59 && mark <=69)
+            return Grades.B;
+        else if (mark > 69 && mark <=100)
+            return Grades.A;
+        else
+            return Grades.NS;
     }
     
     /**
@@ -68,7 +87,15 @@ public class Course
      */
     public Grades calculateGrade(ArrayList<ModuleMark> marks)
     {
-        return Grades.NS;
+        int total = 0;
+        int averageMark = 0;
+        for (ModuleMark mark : marks)
+        {
+            total = total + mark.getValue();    
+        }
+        averageMark = total / modules.size();
+        finalGrade = convertToGrade(averageMark);
+        return finalGrade;
     }
     
     /**
@@ -89,6 +116,11 @@ public class Course
      */
     public void printModules()
     {
-        System.out.println();
+    for(Module module : modules)
+        {
+    module.print();
+    module.printCredit();
     }
+    }
+
 }

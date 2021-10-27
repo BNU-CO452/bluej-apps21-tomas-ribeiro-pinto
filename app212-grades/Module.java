@@ -4,7 +4,8 @@
  * pass the module with a mark of 40+
  *
  * @author Derek Peacock and Nicholas Day
- * @version 1.0 17/07/2021
+ * Modified by Tomás Pinto
+ * @version 27th October 2021
  */
 public class Module
 {
@@ -13,7 +14,7 @@ public class Module
     
     private String code;
     private String title;
-
+    
     /**
      * Constructor for objects of class Module 
      * which initialises the module code and title
@@ -23,13 +24,11 @@ public class Module
         this.code = code;
         this.title = title;
     }
-
-   
+    
     public String getCode()
     {
         return code;
     }
-    
     
     public String getTitle()
     {
@@ -55,4 +54,5 @@ public class Module
     {
         System.out.print("\t  " + CREDIT + " credits");
     }
+    
 }
