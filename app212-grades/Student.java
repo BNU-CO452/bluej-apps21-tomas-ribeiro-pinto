@@ -1,5 +1,6 @@
 import java.util.*;
 import java.util.Random;
+import java.util.ArrayList;
 /**
  * The Student class represents a student in a student administration system.
  * It holds the student details relevant in our context.
@@ -11,9 +12,9 @@ import java.util.Random;
 public class Student
 {
     // the student ID
-    private int id;
+    public int id;
     // the student's full name
-    private String name;
+    public String name;
     // The course the student is enrolled on
     private Course course;
     // The marks awarded for the modules on the course
@@ -22,6 +23,7 @@ public class Student
     private Random randomMark;
     // The modules created
     private Module module;
+    
     
     /**
      * This constructor creates a new student with a
@@ -41,8 +43,8 @@ public class Student
         this.id = id;
         randomMark = new Random(100);
         marks = new ArrayList<ModuleMark>();
-        
     }
+    
     /**
      * Link a ModuleMark object and associate the student with the module's mark 
      */
@@ -54,9 +56,10 @@ public class Student
     /**
      * Set the student's course
      */
-    public void enrol(Course course)
+    public void enrol(Course course, Student student)
     {
         this.course = course;
+        course.students.add(student);
     }
     
     /**
@@ -132,12 +135,13 @@ public class Student
         
         printModules();
        
+        //Calculate the average grade of the four modules.
         Grades finalGrade = course.calculateGrade(marks);
         
         System.out.println();
         System.out.println();
         
-        //Calculate the average grade of the four modules, in case they have been completed.
+        
         if(finalGrade == Grades.NS)
         {
             System.out.println(" No Final Course Grade Yet!");

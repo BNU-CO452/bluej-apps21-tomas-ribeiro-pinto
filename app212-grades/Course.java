@@ -1,3 +1,4 @@
+import java.util.*;
 import java.util.ArrayList;
 /**
  * This class stores information about a course
@@ -12,11 +13,14 @@ public class Course
     public final static int MAXN_MODULES = 4;
 
     public ArrayList<Module> modules;
+    public ArrayList<Student> students;
     
     private String code;
     private String title;
     
     private Grades finalGrade;
+    
+    
      
     public Course()
     {
@@ -33,6 +37,7 @@ public class Course
         this.title = title;
         
         modules  = new ArrayList<Module>();
+        students  =  new ArrayList<Student>();
         
         createModules();
     }
@@ -43,14 +48,14 @@ public class Course
      */
     public void createModules()
     {
-    Module co450 = new Module("CO450", "Computer Architectures");
-    Module co452 = new Module("CO452", "Programming Concepts");
-    Module co454 = new Module("CO454", "Digi-Tech");
-    Module co456 = new Module("CO456", "Web Development");
-    modules.add(co450);
-    modules.add(co452);
-    modules.add(co454);
-    modules.add(co456);
+        Module co450 = new Module("CO450", "Computer Architectures");
+        Module co452 = new Module("CO452", "Programming Concepts");
+        Module co454 = new Module("CO454", "Digi-Tech");
+        Module co456 = new Module("CO456", "Web Development");
+        modules.add(co450);
+        modules.add(co452);
+        modules.add(co454);
+        modules.add(co456);
     }
     
     /**
@@ -108,7 +113,6 @@ public class Course
     {
         System.out.println();
         System.out.println(" Course " + code + ": " + title);
-        //System.out.println();
         
         printModules();
     }
@@ -118,11 +122,18 @@ public class Course
      */
     public void printModules()
     {
-    for(Module module : modules)
+        for(Module module : modules)
         {
-    module.print();
-    module.printCredit();
+            module.print();
+            module.printCredit();
+        }
     }
+    
+    public void printStudentList()
+    {
+        for(Student student: students)
+        {
+            System.out.println("Student Name: " + student.name + "| Student ID: " + student.id);
+        }
     }
-
 }
