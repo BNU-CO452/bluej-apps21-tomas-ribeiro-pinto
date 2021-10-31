@@ -63,7 +63,6 @@ public class Student
     public void enrol(Course course)
     {
         this.course = course;
-        awardTestMarks();
     }
     
     /**

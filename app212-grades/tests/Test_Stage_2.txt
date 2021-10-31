@@ -1,0 +1,71 @@
+Module co450 = new Module("CO450", "Computer Architectures");
+Module co452 = new Module("CO452", "Programming Concepts");
+Module co454 = new Module("CO454", "Digi-Tech");
+Module co456 = new Module("CO456", "Web Development");
+computingandweb.print();
+
+ Course BT1CWD1: BSc Computing and Web Development
+
+ CO450: 	Computer Architectures	  15 credits
+ CO452: 	Programming Concepts	  15 credits
+ CO454: 	Digi-Tech	  15 credits
+ CO456: 	Web Development	  15 creditstomaspinto.awardTestMarks();
+tomaspinto.printTranscript();
+ ------------------------------------
+ App21-02: Exam Board Transcript 2021
+        by student name
+ ------------------------------------
+ Student ID: 22021858, Tomás Pinto
+
+ Course BT1CWD1: BSc Computing and Web Development
+
+ CO450: 	Computer Architectures	  15 credits
+ CO452: 	Programming Concepts	  15 credits
+ CO454: 	Digi-Tech	  15 credits
+ CO456: 	Web Development	  15 credits
+
+ ---- 	 -------------------- 	 ------	 ---- 	 -----
+ Code 	 Module 			Credit	 Mark 	 Grade
+ ---- 	 -------------------- 	 ------	 ---- 	 -----
+
+ CO450: 	Computer Architectures	  0	15	F
+
+ CO452: 	Programming Concepts	  15	50	C
+
+ CO454: 	Digi-Tech		 15	74	A
+
+ CO456: 	Web Development	 	 15	88	A
+
+
+ Final Course Grade = C
+computingandweb.convertToGrade(67)
+    returned Object B
+ModuleMark co452tomasmark = new ModuleMark(co452);
+tomaspinto.printTranscript();
+ ------------------------------------
+ App21-02: Exam Board Transcript 2021
+        by student name
+ ------------------------------------
+ Student ID: 22021858, Tomás Pinto
+
+ Course BT1CWD1: BSc Computing and Web Development
+
+ CO450: 	Computer Architectures	  15 credits
+ CO452: 	Programming Concepts	  15 credits
+ CO454: 	Digi-Tech	  15 credits
+ CO456: 	Web Development	  15 credits
+
+ ---- 	 -------------------- 	 ------	 ---- 	 -----
+ Code 	 Module 			Credit	 Mark 	 Grade
+ ---- 	 -------------------- 	 ------	 ---- 	 -----
+
+ CO450: 	Computer Architectures	  0	15	F
+
+ CO452: 	Programming Concepts	  15	50	C
+
+ CO454: 	Digi-Tech	 	 15	74	A
+
+ CO456: 	Web Development	 	 15	88	A
+
+
+ Final Course Grade = C

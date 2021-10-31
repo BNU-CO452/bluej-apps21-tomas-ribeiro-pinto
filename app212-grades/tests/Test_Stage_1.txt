@@ -1,0 +1,32 @@
+Student tomaspinto = new Student("Tomás Pinto", 22021858);
+tomaspinto.print();
+ Student ID: 22021858, Tomás Pinto
+Course computingandweb = new Course("BT1CWD1", "BSc Computing and Web Development");
+tomaspinto.enrol(computingandweb);
+tomaspinto.printCourse();
+ Student ID: 22021858, Tomás Pinto
+
+ Course BT1CWD1: BSc Computing and Web Development
+
+Module co452 = new Module("CO452", "Programming Concepts");
+computingandweb.addModule(co452);
+ModuleMark co452tomasmark = new ModuleMark(co452);
+co452tomasmark.setMark(56);
+tomaspinto.addMark(co452tomasmark);
+tomaspinto.printTranscript();
+ ------------------------------------
+ App21-02: Exam Board Transcript 2021
+        by student name
+ ------------------------------------
+ Student ID: 22021858, Tomás Pinto
+
+ Course BT1CWD1: BSc Computing and Web Development
+
+
+
+ ---- 	 -------------------- 	 ------	 ---- 	 -----
+ Code 	 Module 		Credit	 Mark 	 Grade
+ ---- 	 -------------------- 	 ------	 ---- 	 -----
+
+
+ No Final Course Grade Yet!
