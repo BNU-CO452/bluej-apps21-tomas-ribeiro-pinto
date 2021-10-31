@@ -1,9 +1,10 @@
-
 /**
- * Write a description of class ModuleMark here.
- *
+ * This class is created to store marks and 
+ * associate a specific student to a module and the mark achieved.
+ * 
  * @author Derek Peacock and Nicholas Day
- * @version 2021-08-18
+ * Modified by Tomás Pinto
+ * @version 31st October 2021
  */
 public class ModuleMark
 {
@@ -18,6 +19,7 @@ public class ModuleMark
         mark = 0;
         this.module = module;
     }
+    
     public int getValue()
     {
         return mark;
@@ -39,6 +41,10 @@ public class ModuleMark
         }
     }
     
+    /**
+     * Set the mark for the associated module 
+     * and link it to the student.
+     */
     public void setMark(int mark)
     {
         this.mark = mark;

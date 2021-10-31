@@ -5,12 +5,12 @@ import java.util.ArrayList;
  *
  * @author Derek Peacock and Nicholas Day
  * Modified by Tomás Pinto
- * @version 20th October 2021
+ * @version 31st October 2021
  */
 public class Course
 {
     public final static int MAXN_MODULES = 4;
-    
+
     public ArrayList<Module> modules;
     
     private String code;
@@ -39,8 +39,7 @@ public class Course
 
     /**
      * Create four modules and add them to the
-     * modules list for testing purposes.  These
-     * must be your four modules.
+     * modules list for testing purposes.
      */
     public void createModules()
     {
@@ -54,6 +53,9 @@ public class Course
     modules.add(co456);
     }
     
+    /**
+     * Add a module to the course
+     */
     public void addModule(Module module)
     {
         if(modules.size() < MAXN_MODULES)
@@ -63,7 +65,7 @@ public class Course
     }
     
     /**
-     * 
+     * Convert module's mark to a grade (A,B,C,D, F or NS)
      */
     public Grades convertToGrade(int mark)
     {   

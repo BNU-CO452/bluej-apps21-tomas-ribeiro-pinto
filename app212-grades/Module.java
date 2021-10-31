@@ -5,7 +5,7 @@
  *
  * @author Derek Peacock and Nicholas Day
  * Modified by Tomás Pinto
- * @version 27th October 2021
+ * @version 31st October 2021
  */
 public class Module
 {
@@ -14,7 +14,7 @@ public class Module
     
     private String code;
     private String title;
-    
+
     /**
      * Constructor for objects of class Module 
      * which initialises the module code and title

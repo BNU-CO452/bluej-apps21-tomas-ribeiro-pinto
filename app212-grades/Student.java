@@ -6,7 +6,7 @@ import java.util.Random;
  * 
  * @author Michael Kölling and David Barnes
  * Modified by Tomás Pinto
- * @version 27th October 2021
+ * @version 31st October 2021
  */
 public class Student
 {
@@ -18,9 +18,9 @@ public class Student
     private Course course;
     // The marks awarded for the modules on the course
     private ArrayList<ModuleMark> marks;
-    
+    // Imports the Random class from java.util.Random;
     private Random randomMark;
-    
+    // The modules created
     private Module module;
     
     /**
@@ -43,20 +43,14 @@ public class Student
         marks = new ArrayList<ModuleMark>();
         
     }
+    /**
+     * Link a ModuleMark object and associate the student with the module's mark 
+     */
     public void addMark(ModuleMark mark)
     {
         marks.add(mark);
     }
-    
-    /**
-     * Find the module by the moduleCode and
-     * set its mark to the value
-     */
-    public void awardMark(ModuleMark ModuleMa)
-    {   
-        
-    }
-    
+
     /**
      * Set the student's course
      */
@@ -66,8 +60,8 @@ public class Student
     }
     
     /**
-     * Award a different pass mark for each of the
-     * modules on the enrolled course
+     * Award a different and random mark for each of the
+     * modules on the enrolled course.
      */
     public void awardTestMarks()
     {
@@ -94,7 +88,6 @@ public class Student
         return id;
     }
 
-        
     /**
      * Print the student's name and ID number to the 
      * output terminal.
@@ -103,6 +96,10 @@ public class Student
     {
         System.out.println(" Student ID: " + id + ", " + name);
     }
+    
+    /**
+     * Print the modules, credit and mark. Converts the mark to A,B,C,D,F or NS(non-submission).
+     */
     private void printModules()
     {
         for(ModuleMark mark : marks)
@@ -111,6 +108,7 @@ public class Student
             System.out.println("\t" + course.convertToGrade(mark.getValue()));
         }
     }
+    
     public void printCourse()
     {
         this.print();
@@ -139,6 +137,7 @@ public class Student
         System.out.println();
         System.out.println();
         
+        //Calculate the average grade of the four modules, in case they have been completed.
         if(finalGrade == Grades.NS)
         {
             System.out.println(" No Final Course Grade Yet!");
