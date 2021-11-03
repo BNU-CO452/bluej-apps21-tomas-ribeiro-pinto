@@ -64,7 +64,9 @@ public class Product
     public void decreaseQuantity(int amount)
     {
         if(quantity >= amount)
+        {
             quantity = quantity - amount;
+        }
     }
     
     /**
