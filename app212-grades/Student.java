@@ -24,7 +24,6 @@ public class Student
     // The modules created
     private Module module;
     
-    
     /**
      * This constructor creates a new student with a
      * fixed name and id. 
@@ -59,6 +58,7 @@ public class Student
     public void enrol(Course course, Student student)
     {
         this.course = course;
+        //Adds the student to the enrollment list
         course.students.add(student);
     }
     

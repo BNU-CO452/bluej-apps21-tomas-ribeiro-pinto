@@ -6,13 +6,15 @@ import java.util.ArrayList;
  *
  * @author Derek Peacock and Nicholas Day
  * Modified by Tomás Pinto
- * @version 31st October 2021
+ * @version 3rd November 2021
  */
 public class Course
 {
     public final static int MAXN_MODULES = 4;
-
+    
+    //Array List with Module objects
     public ArrayList<Module> modules;
+    //Array List with students assigned to the course
     public ArrayList<Student> students;
     
     private String code;
@@ -129,6 +131,9 @@ public class Course
         }
     }
     
+    /**
+     * Prints a list of students enrolled in a course, using an array List.
+     */
     public void printStudentList()
     {
         for(Student student: students)
