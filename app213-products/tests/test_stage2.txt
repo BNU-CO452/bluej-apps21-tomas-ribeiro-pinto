@@ -1,0 +1,93 @@
+StockList products = new StockList();
+StockDemo stockDem1 = new StockDemo(products);
+stockDem1.runDemo();
+
+ Tomas' Shop Stock List
+ ====================
+
+ ID 101: Samsung Galaxy S20 stock level: 0
+ ID 102: Apple iPhone 13 stock level: 0
+ ID 103: Google Pixel 4A stock level: 0
+ ID 104: Xiaomi Mi 11 stock level: 0
+ ID 105: Samsung Galaxy Fold stock level: 0
+ ID 106: Huawei P30 Pro stock level: 0
+ ID 107: Apple iPhone 8 stock level: 0
+ ID 108: Xiaomi Redmi 4 Pro  stock level: 0
+ ID 109: Realme 8 5G stock level: 0
+ ID 110: OnePlus 9 5G stock level: 0
+
+Bought 40 of Samsung Galaxy S20
+Not enough storage for buying 4000 of Apple iPhone 13
+Bought 853 of Apple iPhone 13
+Bought 30 of Google Pixel 4A
+Bought 90 of Xiaomi Mi 11
+Bought 50 of Samsung Galaxy Fold
+Cannot buy -38 of Huawei P30 Pro because there can't be a negative number of stock
+Bought 40 of Apple iPhone 8
+Bought 99 of Xiaomi Redmi 4 Pro 
+Bought 78 of Realme 8 5G
+Bought 430 of OnePlus 9 5G
+The desired product does not exist! Please check the ID and try again.
+
+ Tomas' Shop Stock List
+ ====================
+
+ ID 101: Samsung Galaxy S20 stock level: 40
+ ID 102: Apple iPhone 13 stock level: 853
+ ID 103: Google Pixel 4A stock level: 30
+ ID 104: Xiaomi Mi 11 stock level: 90
+ ID 105: Samsung Galaxy Fold stock level: 50
+ ID 106: Huawei P30 Pro stock level: 0
+ ID 107: Apple iPhone 8 stock level: 40
+ ID 108: Xiaomi Redmi 4 Pro  stock level: 99
+ ID 109: Realme 8 5G stock level: 78
+ ID 110: OnePlus 9 5G stock level: 430
+
+Sold 32 of Samsung Galaxy S20
+Cannot sell -1 of Apple iPhone 13 because there can't be a negative number of stock.
+Sold 10 of Apple iPhone 13
+Cannot sell 3200 of Google Pixel 4A because there's only 30 in stock.
+Sold 0 of Xiaomi Mi 11
+Sold 42 of Samsung Galaxy Fold
+Cannot sell 42 of Huawei P30 Pro because there's only 0 in stock.
+Cannot sell 42 of Apple iPhone 8 because there's only 40 in stock.
+Sold 30 of Apple iPhone 8
+Sold 59 of Xiaomi Redmi 4 Pro 
+Sold 8 of Realme 8 5G
+Sold 3 of OnePlus 9 5G
+The desired product does not exist! Please check the ID and try again.
+
+ Tomas' Shop Stock List
+ ====================
+
+ ID 101: Samsung Galaxy S20 stock level: 8
+ ID 102: Apple iPhone 13 stock level: 843
+ ID 103: Google Pixel 4A stock level: 30
+ ID 104: Xiaomi Mi 11 stock level: 90
+ ID 105: Samsung Galaxy Fold stock level: 8
+ ID 106: Huawei P30 Pro stock level: 0
+ ID 107: Apple iPhone 8 stock level: 10
+ ID 108: Xiaomi Redmi 4 Pro  stock level: 40
+ ID 109: Realme 8 5G stock level: 70
+ ID 110: OnePlus 9 5G stock level: 427
+
+products.remove(104);
+products.findProduct(104)
+    returned Object null
+products.searchProduct("Samsung");
+
+ Search List: Products starting with Samsung
+ ========================================
+
+ ID 101: Samsung Galaxy S20 stock level: 8
+ ID 105: Samsung Galaxy Fold stock level: 8
+products.listLowStock();
+
+ Search List: Products with low stock 
+ ====================================
+
+ ID 101: Samsung Galaxy S20 stock level: 8
+ ID 103: Google Pixel 4A stock level: 30
+ ID 105: Samsung Galaxy Fold stock level: 8
+ ID 106: Huawei P30 Pro stock level: 0
+ ID 107: Apple iPhone 8 stock level: 10

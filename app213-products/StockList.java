@@ -50,7 +50,12 @@ public class StockList
         
         if(product != null) 
         {
-            if(product.getQuantity() < 1000)
+            if(amount < 0)
+            {
+                System.out.println("Cannot buy " + amount + " of " + product.getName() 
+                + " because there can't be a negative number of stock");
+            }
+            else if(product.getQuantity() + amount < 1000)
             {
                 product.increaseQuantity(amount);
                 System.out.println("Bought " + amount + " of " + product.getName());
@@ -95,10 +100,16 @@ public class StockList
         
         if(product != null) 
         {
-            if(product.getQuantity() > 0 && product.getQuantity() >= amount)
+            if(amount < 0)
+            {
+                System.out.println("Cannot sell " + amount + " of " + product.getName() 
+                + " because there can't be a negative number of stock.");
+            }
+            
+            else if(product.getQuantity() > 0 && product.getQuantity() >= amount)
             {
                 product.decreaseQuantity(amount);
-                System.out.println("Sold " + amount + "of " + product.getName());
+                System.out.println("Sold " + amount + " of " + product.getName());
             }
             
             else if(product.getQuantity() < amount)
@@ -169,5 +180,50 @@ public class StockList
         System.out.println(" Tomas' Shop Stock List");
         System.out.println(" ====================");
         System.out.println();
+    }
+    
+    public void remove(int id)
+    {
+        Product product = findProduct(id);
+        if(product != null)
+        {
+            stock.remove(product);
+        }
+        else
+        {
+            System.out.println("Cannot find product to remove it. Try again...");
+        }
+    }
+    
+    public void searchProduct(String searchStartingWord)
+    {
+        System.out.println();
+        System.out.println(" Search List: Products starting with " + searchStartingWord);
+        System.out.println(" ========================================");
+        System.out.println();
+        
+        for(Product product: stock)
+        {     
+            if(product.getName().startsWith(searchStartingWord) == true)
+            {
+                System.out.println(product);
+            }
+        }
+    }
+    
+    public void listLowStock()
+    {
+       System.out.println();
+       System.out.println(" Search List: Products with low stock " );
+       System.out.println(" ====================================");
+       System.out.println();
+        
+        for(Product product: stock)
+        {     
+            if(product.getQuantity() <= 30)
+            {
+                System.out.println(product);
+            }
+        } 
     }
 }

@@ -1,0 +1,24 @@
+Product product111 = new Product(111, "Apple iPhone 12 Pro Max");
+product111.print();
+ ID 111: Apple iPhone 12 Pro Max stock level: 0
+product111.decreaseQuantity(3);
+product111.print();
+ ID 111: Apple iPhone 12 Pro Max stock level: 0
+product111.increaseQuantity(5);
+product111.print();
+ ID 111: Apple iPhone 12 Pro Max stock level: 5
+product111.decreaseQuantity(3);
+product111.print();
+ ID 111: Apple iPhone 12 Pro Max stock level: 2
+Product product1 = new Product(112, "Samsung Note 20");
+StockList products = new StockList();
+products.add(product1);
+products.add(product111);
+products.print();
+
+ Tomas' Shop Stock List
+ ====================
+
+ ID 112: Samsung Note 20 stock level: 0
+ ID 111: Apple iPhone 12 Pro Max stock level: 2
+
