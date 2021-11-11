@@ -1,28 +1,24 @@
-
 /**
- * Demonstrate the StockManager and Product classes.
- * The demonstration becomes properly functional as
- * the StockManager class is completed.
+ * Demonstrate the StockList and Product classes 
+ * with a demo preset.
  * 
  * @author David J. Barnes and Michael Kölling.
- * @version 2016.02.29
+ * @modified by: Tomás Pinto
+ * @version: 11th November 2021
  */
 public class StockDemo
 {
-    // The stock manager.
+    // The stock list
     private StockList stock;
     private StockList stockList;
 
     /**
-     * Create a StockManager and populate it with at least
+     * Create a StockList and populate it with at least
      * 10 sample products.
      */
     public StockDemo(StockList stock)
     {
         this.stock = stock;
-        
-        // Add at least 10 products, they must be unique to you
-        // Make sure the ids are sequential numbers
         
         stock.add(new Product(101, "Samsung Galaxy S20"));
         stock.add(new Product(102, "Apple iPhone 13"));
@@ -37,16 +33,14 @@ public class StockDemo
     }
     
     /**
-     * Provide a demonstration of how the ProductList meets all
+     * Provide a demonstration of how the product list meets all
      * the user requirements by making a delivery of each product 
      * buying it in various amounts and then selling each
-     * product by various amounts. Make sure all the requirements
-     * have been demonstrated.
+     * product by various amounts.
      */
     public void runDemo()
     {
         // Show details of all of the products before delivery.
-        
         stock.print();
 
         buyProducts();
@@ -56,6 +50,9 @@ public class StockDemo
         stock.print();        
     }
     
+    /**
+     * Buy different quantities of products
+     */
     private void buyProducts()
     {
          stock.buyProduct(101, 40);
@@ -72,6 +69,9 @@ public class StockDemo
          stock.buyProduct(113, 107);
     }
 
+    /**
+     * Sell different quantities of products
+     */
     private void sellProducts()
     {
         stock.sellProduct(101, 32);

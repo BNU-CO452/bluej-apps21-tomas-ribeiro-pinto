@@ -1,11 +1,10 @@
 import java.util.ArrayList;
-
 /**
  * Manage the stock in a business.
  * The stock is described by zero or more Products.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author: Tomás Pinto
+ * @version: 11th November 2021
  */
 public class StockList
 {
@@ -93,6 +92,7 @@ public class StockList
      * Sell one of the given product.
      * Show the before and after status of the product.
      * @param id The ID of the product being sold.
+     * @param amount The amount of the product being sold.
      */
     public void sellProduct(int productID, int amount)
     {
@@ -128,9 +128,8 @@ public class StockList
         {
             System.out.println("The desired product does not exist! Please check the ID and try again.");
         }
-    }    
+    }
 
-    
     /**
      * Locate a product with the given ID, and return how
      * many of this item are in stock. If the ID does not
@@ -140,6 +139,15 @@ public class StockList
      */
     public int numberInStock(int productID)
     {
+        Product product = findProduct(productID);
+        if(product!= null)
+        {
+            return product.getQuantity();
+        }
+        else
+        {
+            System.out.println("Product not found!");
+        }
         return 0;
     }
 
@@ -155,6 +163,10 @@ public class StockList
         if(product != null) 
         {
             System.out.println(product.toString());
+        }
+        else
+        {
+            System.out.println("Product not found!");
         }
     }
     
@@ -174,6 +186,9 @@ public class StockList
         System.out.println();
     }
     
+    /**
+     * Prints the header of the Stock List
+     */
     public void printHeading()
     {
         System.out.println();
@@ -182,6 +197,10 @@ public class StockList
         System.out.println();
     }
     
+    /**
+     * Removing a specific product of the stock list
+     * @parm id The ID of the product to look for and remove
+     */
     public void remove(int id)
     {
         Product product = findProduct(id);
@@ -195,6 +214,10 @@ public class StockList
         }
     }
     
+    /**
+     * Search tool to search all the products that start with a given word.
+     * @param searchStartingWord The word to look for
+     */
     public void searchProduct(String searchStartingWord)
     {
         System.out.println();
@@ -211,18 +234,37 @@ public class StockList
         }
     }
     
+    /**
+     * Lists all the products that have fallen below 30 units in stock
+     */
     public void listLowStock()
     {
-       System.out.println();
-       System.out.println(" Search List: Products with low stock " );
-       System.out.println(" ====================================");
-       System.out.println();
+        System.out.println();
+        System.out.println(" Search List: Products with low stock " );
+        System.out.println(" ====================================");
+        System.out.println();
         
         for(Product product: stock)
         {     
-            if(product.getQuantity() <= 30)
+            if(product.getQuantity() < 30)
             {
                 System.out.println(product);
+            }
+        } 
+        System.out.println();
+        System.out.println(" If you want to re-stock the products above, call the method restock() " );
+    }
+    
+    /**
+     * Re-stocking all the products listed in the low stock level list
+     */
+    public void restock()
+    {
+        for(Product product: stock)
+        {     
+            if(product.getQuantity() < 30)
+            {
+                product.increaseQuantity(30-product.getQuantity());
             }
         } 
     }
