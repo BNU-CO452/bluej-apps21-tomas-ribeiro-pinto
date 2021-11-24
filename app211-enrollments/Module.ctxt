@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Module
+comment0.text=\n\ This\ class\ provides\ a\ tool\ to\ create\ and\ print\ a\ module\ details.\n\n\ @author\ Tom\u00E1s\ Pinto\n\ @version\ 1st\ Oct\ 2021\n
+comment1.params=code\ title\ credit_value
+comment1.target=Module(java.lang.String,\ java.lang.String,\ int)
+comment1.text=\n\ Create\ a\ new\ Module\ with\ a\ code,\ title\ and\ credit\ value.\n
+comment2.params=
+comment2.target=java.lang.String\ getCode()
+comment2.text=\n\ Return\ the\ Module's\ Code\n
+comment3.params=
+comment3.target=java.lang.String\ getTitle()
+comment3.text=\n\ Return\ the\ Module's\ Title\n
+comment4.params=
+comment4.target=int\ getCreditValue()
+comment4.text=\n\ Return\ the\ Module's\ Credit\ Value\n
+comment5.params=credit_value
+comment5.target=void\ setCreditValue(int)
+comment5.text=\n\ Set\ a\ new\ credit\ value\ for\ the\ module.\n
+comment6.params=
+comment6.target=void\ printHeading()
+comment6.text=\n\ Print\ out\ the\ details\ of\ the\ module\ to\ the\ terminal.\n
+comment7.params=
+comment7.target=void\ print()
+comment7.text=\n\ Print\ all\ the\ module\ details\n
+numComments=8

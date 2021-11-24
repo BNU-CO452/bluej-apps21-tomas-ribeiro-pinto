@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=ModuleMark
+comment0.text=\n\ This\ class\ is\ created\ to\ store\ marks\ and\ \n\ associate\ a\ specific\ student\ to\ a\ module\ and\ the\ mark\ achieved.\n\ \n\ @author\ Derek\ Peacock\ and\ Nicholas\ Day\n\ Modified\ by\ Tom\u00E1s\ Pinto\n\ @version\ 31st\ October\ 2021\n
+comment1.params=module
+comment1.target=ModuleMark(Module)
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ ModuleMark\n
+comment2.params=
+comment2.target=int\ getValue()
+comment3.params=
+comment3.target=int\ getCredit()
+comment3.text=\n\ If\ the\ mark\ is\ 40%\ or\ more\ then\ the\ \n\ student\ is\ awarded\ the\ module's\ credit.\n
+comment4.params=mark
+comment4.target=void\ setMark(int)
+comment4.text=\n\ Set\ the\ mark\ for\ the\ associated\ module\ \n\ and\ link\ it\ to\ the\ student.\n
+comment5.params=
+comment5.target=Module\ getModule()
+comment6.params=
+comment6.target=void\ print()
+comment6.text=\n\ Print\ the\ module\ details\ and\ any\ credit\n\ that\ has\ been\ awarded.\n
+numComments=7

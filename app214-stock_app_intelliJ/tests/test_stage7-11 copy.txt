@@ -1,0 +1,134 @@
+********************************
+  App21-04: Stock Application 
+      by Tomás Pinto
+********************************
+
+    Add:        Add a new product
+    Remove:     Remove an old product
+    Print:      Print all products
+    Buy:        Increase product stock
+    Sell:       Decrease product stock
+    Low:        Show products with low stock
+    Search:     Search products by name
+    Stock:      Show stock of product by id
+    Demo:       Run StockDemo
+    Quit:       Quit the program
+
+Please enter your choice > buy
+Please enter the ID of the product you want to buy
+101
+Please enter the amount you want to buy
+4
+The desired product does not exist! Please check the ID and try again.
+********************************
+  App21-04: Stock Application 
+      by Tomás Pinto
+********************************
+
+    Add:        Add a new product
+    Remove:     Remove an old product
+    Print:      Print all products
+    Buy:        Increase product stock
+    Sell:       Decrease product stock
+    Low:        Show products with low stock
+    Search:     Search products by name
+    Stock:      Show stock of product by id
+    Demo:       Run StockDemo
+    Quit:       Quit the program
+
+Please enter your choice > stock
+Please enter the ID of the product you want to check stock
+101
+Product not found!
+********************************
+  App21-04: Stock Application 
+      by Tomás Pinto
+********************************
+
+    Add:        Add a new product
+    Remove:     Remove an old product
+    Print:      Print all products
+    Buy:        Increase product stock
+    Sell:       Decrease product stock
+    Low:        Show products with low stock
+    Search:     Search products by name
+    Stock:      Show stock of product by id
+    Demo:       Run StockDemo
+    Quit:       Quit the program
+
+Please enter your choice > buy
+
+Please enter the ID of the product you want to buy
+102
+Please enter the amount you want to buy
+4
+Bought 4 of Apple iPhone 13
+********************************
+  App21-04: Stock Application 
+      by Tomás Pinto
+********************************
+
+    Add:        Add a new product
+    Remove:     Remove an old product
+    Print:      Print all products
+    Buy:        Increase product stock
+    Sell:       Decrease product stock
+    Low:        Show products with low stock
+    Search:     Search products by name
+    Stock:      Show stock of product by id
+    Demo:       Run StockDemo
+    Quit:       Quit the program
+
+Please enter your choice > sell
+Please enter the ID of the product you want to sell
+102
+Please enter the amount you want to sell
+4
+Sold 4 of Apple iPhone 13
+********************************
+  App21-04: Stock Application 
+      by Tomás Pinto
+********************************
+
+    Add:        Add a new product
+    Remove:     Remove an old product
+    Print:      Print all products
+    Buy:        Increase product stock
+    Sell:       Decrease product stock
+    Low:        Show products with low stock
+    Search:     Search products by name
+    Stock:      Show stock of product by id
+    Demo:       Run StockDemo
+    Quit:       Quit the program
+
+Please enter your choice > search
+To search for specific products please enter their name here:sam
+
+ Search List: Products that contain sam
+ ========================================
+
+ ID 105: Samsung Galaxy Fold stock level: 8
+********************************
+  App21-04: Stock Application 
+      by Tomás Pinto
+********************************
+
+    Add:        Add a new product
+    Remove:     Remove an old product
+    Print:      Print all products
+    Buy:        Increase product stock
+    Sell:       Decrease product stock
+    Low:        Show products with low stock
+    Search:     Search products by name
+    Stock:      Show stock of product by id
+    Demo:       Run StockDemo
+    Quit:       Quit the program
+
+Please enter your choice > low
+
+ Search List: Products with low stock 
+ ====================================
+
+ ID 105: Samsung Galaxy Fold stock level: 8
+ ID 106: Huawei P30 Pro stock level: 0
+ ID 107: Apple iPhone 8 stock level: 10

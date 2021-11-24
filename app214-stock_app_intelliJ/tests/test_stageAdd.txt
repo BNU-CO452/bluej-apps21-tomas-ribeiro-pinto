@@ -1,0 +1,166 @@
+********************************
+  App21-04: Stock Application 
+      by Tomás Pinto
+********************************
+
+    Add:        Add a new product
+    Remove:     Remove an old product
+    Print:      Print all products
+    Buy:        Increase product stock
+    Sell:       Decrease product stock
+    Low:        Show products with low stock
+    Search:     Search products by name
+    Stock:      Show stock of product by id
+    Demo:       Run StockDemo
+    Quit:       Quit the program
+
+Please enter your choice > add
+Please enter the ID for the product desired
+100
+Please enter the name for the new productTest
+The product Test has been added to the product list
+********************************
+  App21-04: Stock Application 
+      by Tomás Pinto
+********************************
+
+    Add:        Add a new product
+    Remove:     Remove an old product
+    Print:      Print all products
+    Buy:        Increase product stock
+    Sell:       Decrease product stock
+    Low:        Show products with low stock
+    Search:     Search products by name
+    Stock:      Show stock of product by id
+    Demo:       Run StockDemo
+    Quit:       Quit the program
+
+Please enter your choice > add
+Please enter the ID for the product desired
+100
+Please enter the name for the new productAnother Test
+Operation denied! There is already a product with that same id...
+********************************
+  App21-04: Stock Application 
+      by Tomás Pinto
+********************************
+
+    Add:        Add a new product
+    Remove:     Remove an old product
+    Print:      Print all products
+    Buy:        Increase product stock
+    Sell:       Decrease product stock
+    Low:        Show products with low stock
+    Search:     Search products by name
+    Stock:      Show stock of product by id
+    Demo:       Run StockDemo
+    Quit:       Quit the program
+
+Please enter your choice > print
+
+ Tomas' Shop Stock List
+ ====================
+
+ ID 101: Samsung Galaxy S20 stock level: 0
+ ID 102: Apple iPhone 13 stock level: 0
+ ID 103: Google Pixel 4A stock level: 0
+ ID 104: Xiaomi Mi 11 stock level: 0
+ ID 105: Samsung Galaxy Fold stock level: 0
+ ID 106: Huawei P30 Pro stock level: 0
+ ID 107: Apple iPhone 8 stock level: 0
+ ID 108: Xiaomi Redmi 4 Pro  stock level: 0
+ ID 109: Realme 8 5G stock level: 0
+ ID 110: OnePlus 9 5G stock level: 0
+ ID 100: Test stock level: 0
+
+********************************
+  App21-04: Stock Application 
+      by Tomás Pinto
+********************************
+
+    Add:        Add a new product
+    Remove:     Remove an old product
+    Print:      Print all products
+    Buy:        Increase product stock
+    Sell:       Decrease product stock
+    Low:        Show products with low stock
+    Search:     Search products by name
+    Stock:      Show stock of product by id
+    Demo:       Run StockDemo
+    Quit:       Quit the program
+
+Please enter your choice > low
+
+ Search List: Products with low stock 
+ ====================================
+
+ ID 101: Samsung Galaxy S20 stock level: 8
+ ID 105: Samsung Galaxy Fold stock level: 8
+ ID 106: Huawei P30 Pro stock level: 0
+ ID 107: Apple iPhone 8 stock level: 10
+
+********************************
+  App21-04: Stock Application 
+      by Tomás Pinto
+********************************
+
+    Add:        Add a new product
+    Remove:     Remove an old product
+    Print:      Print all products
+    Buy:        Increase product stock
+    Sell:       Decrease product stock
+    Low:        Show products with low stock
+    Search:     Search products by name
+    Stock:      Show stock of product by id
+    Restock:    Re-stock all products in low stock by a given amount
+    Demo:       Run StockDemo
+    Quit:       Quit the program
+
+Please enter your choice > restock
+Please enter the amount you want to re-stock all the products in low stock by
+1
+********************************
+  App21-04: Stock Application 
+      by Tomás Pinto
+********************************
+
+    Add:        Add a new product
+    Remove:     Remove an old product
+    Print:      Print all products
+    Buy:        Increase product stock
+    Sell:       Decrease product stock
+    Low:        Show products with low stock
+    Search:     Search products by name
+    Stock:      Show stock of product by id
+    Restock:    Re-stock all products in low stock by a given amount
+    Demo:       Run StockDemo
+    Quit:       Quit the program
+
+Please enter your choice > low
+
+ Search List: Products with low stock 
+ ====================================
+
+ ID 101: Samsung Galaxy S20 stock level: 9
+ ID 105: Samsung Galaxy Fold stock level: 9
+ ID 106: Huawei P30 Pro stock level: 1
+ ID 107: Apple iPhone 8 stock level: 11
+
+********************************
+  App21-04: Stock Application 
+      by Tomás Pinto
+********************************
+
+    Add:        Add a new product
+    Remove:     Remove an old product
+    Print:      Print all products
+    Buy:        Increase product stock
+    Sell:       Decrease product stock
+    Low:        Show products with low stock
+    Search:     Search products by name
+    Stock:      Show stock of product by id
+    Restock:    Re-stock all products in low stock by a given amount
+    Demo:       Run StockDemo
+    Quit:       Quit the program
+
+Please enter your choice > 

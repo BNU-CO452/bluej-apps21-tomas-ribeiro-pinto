@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Module
+comment0.text=\n\ Modules\ form\ part\ of\ a\ course\ and\ contain\n\ credits\ that\ students\ achieve\ when\ they\n\ pass\ the\ module\ with\ a\ mark\ of\ 40+\n\n\ @author\ Derek\ Peacock\ and\ Nicholas\ Day\n\ Modified\ by\ Tom\u00E1s\ Pinto\n\ @version\ 31st\ October\ 2021\n
+comment1.params=code\ title
+comment1.target=Module(java.lang.String,\ java.lang.String)
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Module\ \n\ which\ initialises\ the\ module\ code\ and\ title\n
+comment2.params=
+comment2.target=java.lang.String\ getCode()
+comment3.params=
+comment3.target=java.lang.String\ getTitle()
+comment4.params=
+comment4.target=void\ print()
+comment4.text=\n\ Print\ out\ the\ code\ and\ title\ of\ this\ module\n\ but\ stay\ on\ the\ same\ line\ so\ that\ credits\n\ can\ be\ added\ if\ needed.\n
+comment5.params=
+comment5.target=void\ printCredit()
+comment5.text=\n\ Print\ out\ the\ credit\ on\ the\ current\ line\n\ so\ that\ a\ mark\ and\ grade\ could\ be\ added\n
+numComments=6

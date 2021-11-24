@@ -29,13 +29,15 @@ public class InputReader
      */
     public String getString(String prompt)
     {
+        this.reader = new Scanner(System.in);
         String inputLine = null;
         boolean isValid = false;
-        
+
+
         while(!isValid)
         {
             System.out.print(prompt);         // print prompt
-            inputLine = reader.nextLine();
+            inputLine = this.reader.nextLine();
             
             if(!inputLine.isEmpty())
                 isValid = true;
@@ -54,13 +56,14 @@ public class InputReader
      */
     public int getInt(String prompt)
     {
+        this.reader = new Scanner(System.in);
         int number = 0;
         boolean isValid = false;
         
         while(!isValid)
         {
             System.out.println(prompt);         // print prompt
-            number = reader.nextInt();
+            number = this.reader.nextInt();
             
             if(number > 0)
             {
