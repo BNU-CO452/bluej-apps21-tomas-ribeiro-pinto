@@ -6,16 +6,16 @@ import java.util.ArrayList;
  * The stock is described by zero or more Products.
  * 
  * @author: Tomás Pinto
- * @version: 11th November 2021
+ * @version: 30th November 2021
  */
 public class StockList
 {
     // A list of the products.
     private ArrayList<Product> stock;
+    // Terminal colors retrieved from: https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
     public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
-    //https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
 
     /**
      * Initialise the stock manager.
@@ -141,9 +141,8 @@ public class StockList
      * many of this item are in stock. If the ID does not
      * match any product, return zero.
      * @param productID The ID of the product.
-     * @return The quantity of the given product in stock.
      */
-    public int numberInStock(int productID)
+    public void numberInStock(int productID)
     {
         Product product = findProduct(productID);
         if(product != null)
@@ -154,7 +153,6 @@ public class StockList
         {
             System.out.println(ANSI_RED_BACKGROUND +"Product not found!" + ANSI_RESET);
         }
-        return 0;
     }
 
     /**
@@ -234,7 +232,7 @@ public class StockList
         
         for(Product product: stock)
         {     
-            if(product.getName().toLowerCase().contains(word.toLowerCase()) == true)
+            if(product.getName().toLowerCase().contains(word.toLowerCase()))
             {
                 System.out.println(product);
             }
@@ -281,10 +279,11 @@ public class StockList
     {
         for(Product product: stock)
         {
-            if(product.getQuantity() < 30)
+            if (product.getQuantity() < 30)
             {
                 product.increaseQuantity(amount);
             }
+
         }
     }
 }

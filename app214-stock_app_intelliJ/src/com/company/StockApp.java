@@ -5,21 +5,24 @@ package com.company;
  * stock manager so that users can add, edit,
  * print and remove stock products
  *
- * @author Student Name
- * @version 0.1
+ * @author Tomás Pinto
+ * @version 30th November 2021
  */
 public class StockApp
 {
+    // The input reader
     private InputReader reader;
+    // The stock list
     private StockList stock;
-    private StockList stockList;
+    // The demo class for testing purposes
     private StockDemo demo;
+
+    // Terminal colors retrieved from: https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
     public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
     public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
-    //https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
     
     /**
      * Constructor for objects of class StockApp
@@ -29,7 +32,6 @@ public class StockApp
         reader = new InputReader();
         stock = new StockList();
         demo = new StockDemo(stock);
-        //this.stockList = stockList;
     }
 
     /**
@@ -51,6 +53,13 @@ public class StockApp
         }
     }
 
+    /**
+     * The user can select one of the operations: Adding a product, removing a product,
+     * buying, selling, searching a product, listing and re-stocking low-stock products,
+     * printing the stock list, running the demo class or quit the application.
+     * @param choice selects the operation
+     * @return
+     */
     private boolean executeChoice(String choice)
     {
         if(choice.equals("quit"))
@@ -112,6 +121,10 @@ public class StockApp
         }
         else if(choice.equals("restock"))
         {
+            stock.restock();
+        }
+        else if(choice.equals("restockby"))
+        {
             int amount = reader.getInt(ANSI_GREEN_BACKGROUND + "Please enter the amount you want to re-stock all the products in low stock by" + ANSI_RESET);
             stock.restockby(amount);
         }
@@ -142,14 +155,15 @@ public class StockApp
         System.out.println(ANSI_RED + "    Low:" + ANSI_RESET+ "        Show products with low stock");
         System.out.println(ANSI_RED + "    Search:" + ANSI_RESET+ "     Search products by name");
         System.out.println(ANSI_RED + "    Stock:" + ANSI_RESET+ "      Show stock of product by id");
-        System.out.println(ANSI_RED + "    Restock:" + ANSI_RESET+ "    Re-stock all products in low stock by a given amount");
+        System.out.println(ANSI_RED + "    Restock:" + ANSI_RESET+ "    Re-stock all products in low stock to pre-set level");
+        System.out.println(ANSI_RED + "    Restockby:" + ANSI_RESET+ "    Re-stock all products in low stock by a given amount");
         System.out.println(ANSI_RED + "    Demo:" + ANSI_RESET+ "       Run StockDemo");
         System.out.println(ANSI_RED + "    Quit:" + ANSI_RESET+ "       Quit the program");
         System.out.println();        
     }
     
     /**
-     * Print the title of the program and the authors name
+     * Print the title of the program and the author's name
      */
     private void printHeading()
     {
