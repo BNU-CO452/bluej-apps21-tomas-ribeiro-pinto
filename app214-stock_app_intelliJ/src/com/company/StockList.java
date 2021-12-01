@@ -220,8 +220,8 @@ public class StockList
     }
     
     /**
-     * Search tool to search all the products that start with a given word.
-     * @param word The word to look for
+     * Search tool to search all the products that contain a given word.
+     * @param word The characters to look for in product name
      */
     public void searchProduct(String word)
     {

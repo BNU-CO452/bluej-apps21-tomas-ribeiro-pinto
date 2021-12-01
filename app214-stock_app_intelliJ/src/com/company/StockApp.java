@@ -6,7 +6,7 @@ package com.company;
  * print and remove stock products
  *
  * @author Tomás Pinto
- * @version 30th November 2021
+ * @version 1st December 2021
  */
 public class StockApp
 {
@@ -62,11 +62,13 @@ public class StockApp
      */
     private boolean executeChoice(String choice)
     {
+        //quits the application
         if(choice.equals("quit"))
         {
             System.out.println(ANSI_GREEN_BACKGROUND + "Goodbye! Closing the application..." + ANSI_RESET);
             return true;
         }
+        //prompts for ID and name of the product to be inserted, if already in the system it denies the operation
         else if(choice.equals("add"))
         {
             int id = reader.getInt(ANSI_GREEN_BACKGROUND + "Please enter the ID for the product desired" + ANSI_RESET);
@@ -83,55 +85,74 @@ public class StockApp
             }
         }
 
+        //removes a product by id
         else if(choice.equals("remove"))
         {
             int id = reader.getInt(ANSI_GREEN_BACKGROUND + "Please enter the ID of the product you want to remove" + ANSI_RESET);
             stock.remove(id);
         }
+
+        //prints the stock list
         else if(choice.equals("print"))
         {
             stock.print();
         }
 
+        //prompts for id and amount of the product to buy
         else if(choice.equals("buy"))
         {
             int id = reader.getInt(ANSI_GREEN_BACKGROUND + "Please enter the ID of the product you want to buy" + ANSI_RESET);
             int amount = reader.getInt(ANSI_GREEN_BACKGROUND + "Please enter the amount you want to buy" + ANSI_RESET);
             stock.buyProduct(id, amount);
         }
+
+        //prompts for id and amount of the product to sell
         else if(choice.equals("sell"))
         {
             int id = reader.getInt(ANSI_GREEN_BACKGROUND + "Please enter the ID of the product you want to sell" + ANSI_RESET);
             int amount = reader.getInt(ANSI_GREEN_BACKGROUND + "Please enter the amount you want to sell" + ANSI_RESET);
             stock.sellProduct(id, amount);
         }
+
+        //lists low stock
         else if(choice.equals("low"))
         {
             stock.listLowStock();
         }
+
+        //searches for a set of characters in product name and lists all the products with those characters
         else if(choice.equals("search"))
         {
             String word = reader.getString(ANSI_GREEN_BACKGROUND + "To search for specific products please enter their name here:" + ANSI_RESET);
             stock.searchProduct(word);
         }
+
+        //prompts for ID of product to check stock
         else if(choice.equals("stock"))
         {
             int id = reader.getInt(ANSI_GREEN_BACKGROUND + "Please enter the ID of the product you want to check stock" + ANSI_RESET);
             stock.numberInStock(id);
         }
+
+        //executes Re-stock operation
         else if(choice.equals("restock"))
         {
             stock.restock();
         }
+
+        //executes Re-stock operation by a specific amount
         else if(choice.equals("restockby"))
         {
             int amount = reader.getInt(ANSI_GREEN_BACKGROUND + "Please enter the amount you want to re-stock all the products in low stock by" + ANSI_RESET);
             stock.restockby(amount);
         }
+
+        //run demo
         else if(choice.equals("demo"))
         {
             demo.runDemo();
         }
+
         else
         {
             System.out.println(ANSI_RED_BACKGROUND + "The choice you selected is not available. Check the table and your spelling..."
