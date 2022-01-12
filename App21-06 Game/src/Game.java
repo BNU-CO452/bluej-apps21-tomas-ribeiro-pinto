@@ -36,6 +36,8 @@ public class Game
     private Player player;
     public static Player currentPlayer;
     public static Story story;
+    public static Clip currentBackground;
+    public static boolean backgroundMute;
         
     /**
      * Create the game and initialise its internal map.
@@ -60,31 +62,42 @@ public class Game
             gameOver = reader.getCommand();
         }
         if(Player.win){
+            Thread.sleep(2000);
             JFrame frame = new JFrame("You Won the Game");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(300,300);
-            JButton button = new JButton("OK");
-            button.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    System.out.println("You clicked the button");
-                }
-            });
-            frame.getContentPane().add(button); // Adds Button to content pane of frame
-            frame.setVisible(true);
-            System.out.println("\n \n" + ConsoleColours.ANSI_BG_RED + " You have won the game! Congratulations..." + ConsoleColours.ANSI_RESET);
-        }
-        if(Player.quit){
-            JFrame frame = new JFrame("You Lost the Game");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setResizable(false);
             frame.setSize(400, 70);
 
             //Creating the panel at bottom and adding components
             JPanel panel = new JPanel(); // the panel is not visible in output
-            JLabel label = new JLabel("You lost the game! Thank you for playing it. ");
+            JLabel label = new JLabel("Congratulations! You have won the game!\n" +
+                    " Score: " + Game.currentPlayer.getScore() +"% | Grades: "+ Game.currentPlayer.getGrades() +"% \n");
             JButton button = new JButton("Ok");
             button.addActionListener(e -> frame.dispose());
             panel.add(label); // Components Added using Flow Layout
+            panel.add(button);
+
+            //Adding Components to the frame.
+            frame.getContentPane().add(BorderLayout.CENTER, panel);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            System.out.println("\n \n" + ConsoleColours.ANSI_BG_RED + " You have won the game! Congratulations..." + ConsoleColours.ANSI_RESET);
+        }
+        if(Player.quit){
+            Thread.sleep(1000);
+            JFrame frame = new JFrame("You Lost the Game");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setResizable(false);
+            frame.setSize(500, 130);
+
+            //Creating the panel at bottom and adding components
+            JPanel panel = new JPanel(); // the panel is not visible in output
+            JLabel label = new JLabel("You lost the game! Thank you for playing it. ");
+            JLabel label1 = new JLabel("Score: " + Game.currentPlayer.getScore() + "% | Grades: "+ Game.currentPlayer.getGrades() +"%");
+            JButton button = new JButton("Ok");
+            button.addActionListener(e -> frame.dispose());
+            panel.add(label); // Components Added using Flow Layout
+            panel.add(label1);
             panel.add(button);
 
             //Adding Components to the frame.
@@ -108,14 +121,15 @@ public class Game
         Player.players.add(player1);
         Player.players.add(player2);
         Player.players.add(player3);
-        System.out.println(" Meet the characters!");
+        System.out.println(" " + ConsoleColours.ANSI_BG_BLUE + "Choose one of the characters to start the game!" + ConsoleColours.ANSI_RESET + "\n\n" +
+                           "   ( ͡° ͜ʖ ͡°)       ( ͠° ͟ʖ ͠°)        ( ͡~ ͜ʖ ͡°)");
         System.out.println(" ----John----  ----Robert----  ----Connor----\n" +
                            "  Score:  55%   Score:  45%     Score: 50%\n" +
                            "  Grades: 45%   Grades: 55%     Grades: 50%\n\n");
         System.out.println("Select your player by entering their name: ");
         reader.choosePlayer();
         Thread.sleep(200);
-        System.out.println(ConsoleColours.ANSI_BG_YELLOW + " You have chosen " + currentPlayer.getName() + " to be your player. Good Luck! " + ConsoleColours.ANSI_RESET);
+        System.out.println(" " + ConsoleColours.ANSI_BG_YELLOW + "You have chosen " + currentPlayer.getName() + " to be your player. Good Luck! " + ConsoleColours.ANSI_RESET);
         System.out.println();
     }
 
@@ -134,7 +148,7 @@ public class Game
         }
 
         else{
-            System.out.println("Please input john, robert or connor to choose your player:");
+            System.out.println("Please input John, Robert or Connor to choose your player:");
             reader.choosePlayer();
         }
     }
@@ -152,22 +166,53 @@ public class Game
                             + "or even realise that your annoying girlfriend is trying to manipulate you to not study…");
         System.out.println("Are you up to this challenge or will you let your character fail to graduate?");
         System.out.println();
-        System.out.println(" " + ConsoleColours.ANSI_RED + "If you need help, type 'help'." + ConsoleColours.ANSI_RESET);
+        miniHelp();
+        System.out.println(" " + ConsoleColours.ANSI_RED + "If during the game need help with commands, type 'help'." + ConsoleColours.ANSI_RESET);
         System.out.println();
         createPlayers();
         Thread.sleep(1500);
         System.out.println(Map.getCurrentLocation().getLongDescription());
         playSound();
     }
-    public void playSound() {
+    public static void playSound() {
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("/Users/tomaspinto/Downloads/nirvana.wav").getAbsoluteFile());
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("/Users/tomaspinto/Documents/GitHub/bluej-apps21-tomas-ribeiro-pinto/App21-06 Game/background_music.wav").getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
+            currentBackground = clip;
         } catch(Exception ex) {
             System.out.println("Error with playing sound.");
             ex.printStackTrace();
         }
+    }
+    public static void playNirvana() {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("/Users/tomaspinto/Documents/GitHub/bluej-apps21-tomas-ribeiro-pinto/App21-06 Game/nirvana_sound.wav").getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+            currentBackground = clip;
+        } catch(Exception ex) {
+            System.out.println("Error with playing sound.");
+            ex.printStackTrace();
+        }
+    }
+
+    public static void stopSound(Clip currentBackground) {
+        Game.currentBackground = currentBackground;
+        currentBackground.stop();
+    }
+
+    public void miniHelp(){
+        System.out.println(" " +ConsoleColours.ANSI_BG_BLUE + "How to play the game?" + ConsoleColours.ANSI_RESET +
+                "\n Your command words are:\n");
+        for(CommandWords command : CommandWords.values())
+        {
+            System.out.println(" " + command.word +
+                    "\t  : " + command.description);
+        }
+        System.out.println();
+        System.out.println(" e.g. go west, take gold");
     }
 }

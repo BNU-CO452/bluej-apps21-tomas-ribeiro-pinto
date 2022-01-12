@@ -29,21 +29,21 @@ public class GoCommand extends ZuulCommand
         Map map = zuul.MAP;
         
         // Try to leave current room.
-        Location currentLocation = map.getCurrentLocation();
+        Location currentLocation = Map.getCurrentLocation();
         Location nextLocation = currentLocation.getExit(direction);
 
         if (nextLocation == null) 
         {
-            System.out.println("There is no exit in this direction!");
+            System.out.println("There is no exit in that direction!");
         }
         else
         {
-            if(currentLocation.inventory.containsKey("card")){
+            if(Location.inventory.containsKey("card")){
                 map.enterLocation(nextLocation);
-                System.out.println(map.getCurrentLocation().getLongDescription());
+                System.out.println(Map.getCurrentLocation().getLongDescription());
             }
             else{
-                System.out.println(" You need your student card to enter in this building! ");
+                System.out.println(" You need your student card to enter in the building! ");
             }
         }
     }

@@ -131,15 +131,15 @@ public class Location
             Item itemIndex = itemlist.get(itemName);
             inventory.put(itemName, itemIndex);
             itemlist.remove(itemName);
-            System.out.println(ConsoleColours.ANSI_BG_YELLOW + " The item '" + itemName + "' has been taken. " + ConsoleColours.ANSI_RESET);
+            System.out.println(" " + ConsoleColours.ANSI_BG_YELLOW + "The item '" + itemName + "' has been taken. " + ConsoleColours.ANSI_RESET);
             pointsForTaking(itemName);
             System.out.println("\n" + getShortDescription());
         }
         else if(inventory.containsKey(itemName)){
-            System.out.println(ConsoleColours.ANSI_BG_RED + " The item '" + itemName + "' is already in your inventory " + ConsoleColours.ANSI_RESET);
+            System.out.println(" " + ConsoleColours.ANSI_BG_RED + "The item '" + itemName + "' is already in your inventory " + ConsoleColours.ANSI_RESET);
         }
         else{
-            System.out.println(ConsoleColours.ANSI_BG_RED + " There is no such item as '" + itemName + "' in your current location! " + ConsoleColours.ANSI_RESET);
+            System.out.println(" " + ConsoleColours.ANSI_BG_RED + "There is no such item as '" + itemName + "' in your current location! " + ConsoleColours.ANSI_RESET);
         }
     }
 

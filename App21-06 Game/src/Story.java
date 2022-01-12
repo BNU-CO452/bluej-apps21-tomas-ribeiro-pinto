@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -44,6 +45,7 @@ public class Story {
                     System.out.println();
                 }
                 challengeCount = challengeCount + 1;
+                checkGraduation();
             }
             if(Player.girlfriend){
                 System.out.println(" As soon as you entered the flat, you receive a phone call from your girlfriend and she seems very upset with you. \n" +
@@ -57,7 +59,7 @@ public class Story {
                     Game.currentPlayer.changeScore(5);
                     Game.currentPlayer.changeGrades(15);
                     Player.girlfriend = false;
-                    System.out.println(ConsoleColours.ANSI_BG_YELLOW + " You are now single! " + ConsoleColours.ANSI_RESET + "\n");
+                    System.out.println(" " + ConsoleColours.ANSI_BG_YELLOW + "You are now single! " + ConsoleColours.ANSI_RESET + "\n");
                 }
                 else if(hallsSelection == 4){
                     System.out.println(" You decided to turn down the call and turn off the phone.\n" +
@@ -66,9 +68,10 @@ public class Story {
                     Game.currentPlayer.changeScore(-10);
                     Game.currentPlayer.changeGrades(15);
                     Player.girlfriend = false;
-                    System.out.println(ConsoleColours.ANSI_BG_YELLOW + " You are now single! " + ConsoleColours.ANSI_RESET + "\n");
+                    System.out.println(" " + ConsoleColours.ANSI_BG_YELLOW + "You are now single! " + ConsoleColours.ANSI_RESET + "\n");
                 }
                 challengeCount = challengeCount + 1;
+                checkGraduation();
             }
         }
         if(hallsSelection == 0) {
@@ -136,7 +139,7 @@ public class Story {
                             " Because of this, she broke up with you! \n");
                     Game.currentPlayer.changeScore(-10);
                     Game.currentPlayer.changeGrades(15);
-                    System.out.println(ConsoleColours.ANSI_BG_YELLOW + " You are now single! " + ConsoleColours.ANSI_RESET + "\n");
+                    System.out.println(" " + ConsoleColours.ANSI_BG_YELLOW + "You are now single! " + ConsoleColours.ANSI_RESET + "\n");
                     Player.girlfriend = false;
                 }
                 challengeCount = challengeCount + 1;
@@ -175,11 +178,15 @@ public class Story {
                 challengeCount = challengeCount + 1;
             }
         }
-        else if(suSelection == 0){
+        else if(suSelection == 0) {
+            if (!Game.backgroundMute) {
+                Game.stopSound(Game.currentBackground);
+                Game.playNirvana();
+            }
             System.out.println(" Welcome to the Student's Union! \n" +
                     " There is a Rock and Roll theme party taking place and you were invited by Josh, a good friend of you from primary school times. \n" +
                     " You enter in the venue at around 10pm and the first music playing is from Nirvana - Smells Like Teen Spirit. You immediately start to rock and dance... \n \n" +
-                    " Josh, asks you if you want a beer or some shots, what do you prefer? Choose one fo the options available:\n \n" +
+                    " Josh, asks you if you want a beer or some shots, what do you prefer? Choose one of the options available:\n \n" +
                     " Beer - I will take beer as it is the most affordable drink in the menu \n" +
                     " Shot - 5 pounds for 3? Let's get crazy and enjoy the night!!! \n" +
                     " None - I don't need alcohol to have fun, and also I don't have much money to spend...");
@@ -188,17 +195,15 @@ public class Story {
 
             if (suSelection == 1) {
                 System.out.println(" You thank Josh for the drink and you think that a pint of beer should not be a problem as it is friday... \n");
-            }
-            else if (suSelection == 2) {
+            } else if (suSelection == 2) {
                 Game.currentPlayer.changeScore(-10);
                 System.out.println(" Josh gets you some of the most powerful shots and you get drunk instantly. Tomorrow morning won't be pleasant! \n");
-            }
-            else if (suSelection == 3) {
+            } else if (suSelection == 3) {
                 Game.currentPlayer.changeScore(5);
-                System.out.println(" That's a good attitude from you "+ Game.currentPlayer.getName() +"! Your grades benefit from being sober, so you can focus on Computing. \n");
+                System.out.println(" That's a good attitude from you " + Game.currentPlayer.getName() + "! Your grades benefit from being sober, so you can focus on Computing. \n");
             }
 
-                    System.out.println(" After a while of having some good solo dance, it's time for upgrade... \n" +
+            System.out.println(" After a while of having some good solo dance, it's time for upgrade... \n" +
                     " You notice a pale white girl with rosy cheeks approaching you, she introduces herself as Mary and invites you to a dance... \n" +
                     " What do you say? Choose one of the options available:\n \n" +
                     " Yes - I want to dance with the pretty girl in front of me. \n" +
@@ -215,9 +220,8 @@ public class Story {
                         " During the following days you reflect on that night and your developed feelings for Mary, that's when you decide to date her. \n" +
                         " I told you that was a good choice... ( ͡° ͜ʖ ͡°)");
                 Player.girlfriend = true;
-                System.out.println(ConsoleColours.ANSI_BG_YELLOW + " You now have a girlfriend, don't let that affect your studies!" + ConsoleColours.ANSI_RESET + "\n");
-            }
-            else if (suSelection == 5) {
+                System.out.println(" " + ConsoleColours.ANSI_BG_YELLOW + "You now have a girlfriend, don't let that affect your studies!" + ConsoleColours.ANSI_RESET + "\n");
+            } else if (suSelection == 5) {
                 Game.currentPlayer.changeScore(-5);
                 System.out.println(" You turned down her request but she does not give up. \n" +
                         " At some point, you start to think she is the crazy stalker you have been receiving messages on Instagram all week. \n" +
@@ -225,6 +229,10 @@ public class Story {
                         " Well, I guess you're right. Maybe she was not meant to be the next one... \n");
             }
             challengeCount = challengeCount + 1;
+            if (!Game.backgroundMute){
+                Game.stopSound(Game.currentBackground);
+                Game.playSound();
+            }
         }
     }
 
@@ -259,7 +267,7 @@ public class Story {
                     " You must go and finish university first before you can graduate. \n" +
                     " Please come back later... \n");
         }
-        else if(Game.currentPlayer.getGrades() > 50 && Game.currentPlayer.getScore() > 50){
+        else if(Game.currentPlayer.getGrades() >= 50 && Game.currentPlayer.getScore() >= 50){
             System.out.println(" Congratulations and welcome to the graduation ceremony, you just finished university with success!\n" +
                     " Your grades: "+ Game.currentPlayer.getGrades() +"% | Your score: "+ Game.currentPlayer.getScore() +"% \n");
             Player.win = true;
@@ -471,5 +479,12 @@ public class Story {
                         }
                     }
             }
+    }
+    public static void checkGraduation(){
+        if(challengeCount == 7){
+            Map.enterLocation(Map.graduation);
+            System.out.println(ConsoleColours.ANSI_RED + " You have been teleported to the graduation theatre because you have finished all the challenges! \n" + ConsoleColours.ANSI_RESET);
+            System.out.println(Map.getCurrentLocation().getLongDescription());
+        }
     }
 }

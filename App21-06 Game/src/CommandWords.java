@@ -8,11 +8,11 @@
  */
 public enum CommandWords
 {
-    GO   ("go","Exit location in <direction>"),
-    TAKE ("take", "Take <item> from location"),
+    GO   ("go","Exit location in a direction"),
+    TAKE ("take", "Take an item from location"),
     HELP ("help", "List all available commands"),
-    QUIT ("quit", "End the game"),
-    CHOOSE ("choose", "Choose the player you want to be");
+    MUSIC ("music", "Enable or disable background music"),
+    QUIT ("quit", "End the game");
 
     public final String word;
     public final String description;

@@ -86,9 +86,13 @@ public class CommandReader
             HelpCommand help = new HelpCommand(game);
             help.execute();
         }
+        else if(commandWord.equals(CommandWords.MUSIC.word))
+        {
+            MusicCommand music = new MusicCommand(game);
+            music.execute();
+        }
         else if(commandWord.equals(CommandWords.QUIT.word))
         {
-            Player.quit = true;
             return true;  // game over
         }
         else if(Game.currentPlayer.getScore() <= 20 || Game.currentPlayer.getGrades() <= 20){

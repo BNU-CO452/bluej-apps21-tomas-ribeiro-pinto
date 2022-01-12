@@ -41,11 +41,11 @@ public class Player {
     public void changeScore(int amount) {
         score = amount + score;
         if (amount > 0) {
-            System.out.println(ConsoleColours.ANSI_BG_YELLOW + " You increased your score by "
+            System.out.println(" " + ConsoleColours.ANSI_BG_YELLOW + "Score ⬆ "
                     + amount + "% " + ConsoleColours.ANSI_RESET);
         } else if (amount < 0) {
             int symmetric = -amount;
-            System.out.println(ConsoleColours.ANSI_BG_YELLOW + " You decreased your score by "
+            System.out.println(" " + ConsoleColours.ANSI_BG_RED + "Score ⬇ "
                     + symmetric + "% " + ConsoleColours.ANSI_RESET);
         }
         if(score <= 20){
@@ -56,11 +56,11 @@ public class Player {
     public void changeGrades(int amount) {
         grades = amount + grades;
         if (amount > 0) {
-            System.out.println(ConsoleColours.ANSI_BG_YELLOW + " You increased your grades by "
+            System.out.println(" " + ConsoleColours.ANSI_BG_YELLOW + "Grades ⬆ "
                     + amount + "% " + ConsoleColours.ANSI_RESET);
         } else if (amount < 0) {
             int symmetric = -amount;
-            System.out.println(ConsoleColours.ANSI_BG_YELLOW + " You decreased your grades by "
+            System.out.println(" " + ConsoleColours.ANSI_BG_RED + "Grades ⬇ "
                     + symmetric + "% " + ConsoleColours.ANSI_RESET);
         }
         if(grades <= 20){

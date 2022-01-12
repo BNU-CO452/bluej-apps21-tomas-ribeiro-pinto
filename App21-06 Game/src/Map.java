@@ -141,7 +141,7 @@ public class Map
         return currentLocation;
     }
     
-    public void enterLocation(Location nextLocation)
+    public static void enterLocation(Location nextLocation)
     {
         currentLocation = nextLocation;
     }
