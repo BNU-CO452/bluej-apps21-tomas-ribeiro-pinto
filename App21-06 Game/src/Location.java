@@ -1,6 +1,7 @@
+import java.io.Console;
+import java.util.Objects;
 import java.util.Set;
 import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * Class Location - a location on the map of an adventure game.
@@ -21,7 +22,14 @@ public class Location
 {
     private String description;
     // stores exits of this room.
-    private HashMap<String, Location> exits;
+    private Item item;
+    private Game game;
+    private Map map;
+    private Story story;
+    public HashMap<String, Location> exits;
+    public static HashMap<String, Item> inventory;
+    public HashMap<String, Item> itemlist;
+    public String status;
 
     /**
      * Create a location described by "description".
@@ -33,6 +41,8 @@ public class Location
     {
         this.description = description;
         exits = new HashMap<>();
+        inventory = new HashMap<>();
+        itemlist = new HashMap<>();
     }
 
     /**
@@ -51,7 +61,13 @@ public class Location
      */
     public String getShortDescription()
     {
-        return description;
+        String returnString = " You are " + description + "\n \n" + getExitString();
+
+        if(inventory.size() == 0) {
+            return returnString + getStatus();
+        }
+
+        return returnString + ("\n" + getInventoryString() + getStatus());
     }
 
     /**
@@ -62,7 +78,17 @@ public class Location
      */
     public String getLongDescription()
     {
-        return " You are " + description + ".\n" + getExitString();
+        String returnString = chooseStory() + getExitString();
+            if(inventory.size() == 0) {
+                return returnString + getStatus();
+            }
+
+        return returnString + ("\n" + getInventoryString() + getStatus());
+    }
+
+    public String getStatus(){
+        status = "\n Score: " + Game.currentPlayer.getScore() + "%" + "  Grades: " + Game.currentPlayer.getGrades() + "%" ;
+        return status;
     }
 
     /**
@@ -93,6 +119,90 @@ public class Location
     public Location getExit(String direction) 
     {
         return exits.get(direction);
+    }
+
+    public void setItem(Item item, String name){
+        this.item = item;
+        itemlist.put(name, item);
+    }
+
+    public void takeItem(String itemName) {
+        if(itemlist.containsKey(itemName)) {
+            Item itemIndex = itemlist.get(itemName);
+            inventory.put(itemName, itemIndex);
+            itemlist.remove(itemName);
+            System.out.println(ConsoleColours.ANSI_BG_YELLOW + " The item '" + itemName + "' has been taken. " + ConsoleColours.ANSI_RESET);
+            pointsForTaking(itemName);
+            System.out.println("\n" + getShortDescription());
+        }
+        else if(inventory.containsKey(itemName)){
+            System.out.println(ConsoleColours.ANSI_BG_RED + " The item '" + itemName + "' is already in your inventory " + ConsoleColours.ANSI_RESET);
+        }
+        else{
+            System.out.println(ConsoleColours.ANSI_BG_RED + " There is no such item as '" + itemName + "' in your current location! " + ConsoleColours.ANSI_RESET);
+        }
+    }
+
+    public String getInventoryString()
+    {
+        String itemNames = " Inventory: ";
+        Set<String> keys = inventory.keySet();
+
+        for(String item : keys) {
+
+            if (itemNames.length() > 12) {
+                itemNames += ", " + item;
+            } else {
+                itemNames += item;
+            }
+        }
+        return itemNames;
+    }
+
+    public String chooseStory(){
+        System.out.println(" You are " + description + "\n");
+        if (Map.getCurrentLocation() == Map.outside){
+            Story.outsideStory();
+        }
+        else if(Map.getCurrentLocation() == Map.halls){
+            Story.hallsStory();
+        }
+        else if(Map.getCurrentLocation() == Map.reception){
+            Story.receptionStory();
+        }
+        else if(Map.getCurrentLocation() == Map.su){
+            Story.suStory();
+        }
+        else if(Map.getCurrentLocation() == Map.graduation){
+            Story.graduationStory();
+        }
+        else if(Map.getCurrentLocation() == Map.cafe){
+            Story.cafeStory();
+        }
+        else if(Map.getCurrentLocation() == Map.lab){
+            Story.labStory();
+        }
+        else if(Map.getCurrentLocation() == Map.pub){
+            Story.pubStory();
+        }
+        return "";
+    }
+
+    public void pointsForTaking(String itemName){
+        if(Objects.equals(itemName, "sanitizer")){
+            Game.currentPlayer.changeScore(5);
+            System.out.println(ConsoleColours.ANSI_GREEN + " Thank you for keeping our campus Covid-19 secure!" + ConsoleColours.ANSI_RESET);
+        }
+        if(Objects.equals(itemName, "water")){
+            Game.currentPlayer.changeScore(5);
+        }
+        if(Objects.equals(itemName, "snack")){
+            Game.currentPlayer.changeScore(-10);
+        }
+        if(Objects.equals(itemName, "beer")){
+            Game.currentPlayer.changeScore(5);
+            System.out.println(ConsoleColours.ANSI_GREEN + " Enjoy the beer :)" + ConsoleColours.ANSI_RESET);
+        }
     }
 }
 

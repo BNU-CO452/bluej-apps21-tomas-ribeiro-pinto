@@ -14,10 +14,9 @@
 public class Map
 {
     // Need to add a list of exits
-    
-    private Location outside, theater, pub, lab, office;
+    public static Location outside, su, pub, halls, reception, cafe, graduation, lab;
 
-    private Location currentLocation;
+    public static Location currentLocation;
 
     /**
      * Constructor for objects of class Map
@@ -36,9 +35,12 @@ public class Map
     private void createLocations()
     {
         createOutside();
-        createTheatre();
+        createSu();
         createPub();
-        createOffice();
+        createHalls();
+        createReception();
+        createCafe();
+        createGraduation();
         createLab();
 
         currentLocation = outside;  // start game outside
@@ -50,57 +52,87 @@ public class Map
      */
     private void createOutside()
     {
-        outside = new Location("outside the main entrance of the university");
-        
+        outside = new Location("outside the main entrance of the university.");
+        outside.setItem(new Item("Card", "Use your student card to get access to buildings"), "card");
+
     }
-    
+
+    /**
+     * Create the theatre linked to the outside
+     */
+    private void createSu()
+    {
+        su = new Location("in the Students' Union.");
+
+        su.setExit("east", outside);
+        outside.setExit("west", su);
+
+    }
+
     /**
      * Create the pub and link it to the outside
      */
     private void createPub()
     {
-        pub = new Location("in the campus pub");
-        
-        pub.setExit("east", outside);
-        outside.setExit("west", pub);
+        pub = new Location("in the local pub.");
+
+        outside.setExit("south", pub);
+        pub.setExit("north", outside);
+
+        pub.setItem(new Item("Beer", "Relax with some booze"), "beer");
     }
-    
-    /**
-     * Create the theatre linked to the outside
-     */
-    private void createTheatre()
-    {
-        theater = new Location("in a lecture theater");
-        
-        theater.setExit("west", outside);
-        outside.setExit("east", theater);
-    }
-    
+
     /**
      * Create the office linked to the lab
      */
-    private void createOffice()
+    private void createHalls()
     {
-        office = new Location("in the computing admin office");
-        
+        halls = new Location("in the student halls.");
+
+        halls.setExit("west", outside);
+        outside.setExit("east", halls);
     }
     
     /**
      * Create the lab and link it to the outside and office
      */
+    private void createReception()
+    {
+        reception = new Location("in the university reception.");
+        reception.setItem(new Item("Sanitizer", "Use the sanitizer to keep you free from any virus"), "sanitizer");
+        reception.setItem(new Item("Water", "Use the sanitizer to keep you free from any virus"), "water");
+        reception.setItem(new Item("Snack", "Use the sanitizer to keep you free from any virus"), "snack");
+
+        outside.setExit("north", reception);
+        reception.setExit("south", outside);
+    }
+
+    private void createCafe()
+    {
+        cafe = new Location("in the university café.");
+
+        cafe.setExit("west", reception);
+        reception.setExit("east", cafe);
+    }
+
+    private void createGraduation()
+    {
+        graduation = new Location("in graduation room.");
+
+        graduation.setExit("east", reception);
+        reception.setExit("west", graduation);
+    }
+
     private void createLab()
     {
-        // create the Locations
-        lab = new Location("in a computing lab");
-        
-        lab.setExit("east", office);
-        office.setExit("west", lab);
-        
-        lab.setExit("north", outside);
-        outside.setExit("south", lab);
+        lab = new Location("in the computing lab.");
+
+        lab.setExit("south", reception);
+        reception.setExit("north", lab);
     }
-    
-    public Location getCurrentLocation()
+
+
+    public static Location getCurrentLocation()
     {
         return currentLocation;
     }
@@ -109,4 +141,5 @@ public class Map
     {
         currentLocation = nextLocation;
     }
+
 }

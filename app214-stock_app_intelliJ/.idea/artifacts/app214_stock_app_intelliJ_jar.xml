@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="app214-stock_app_intelliJ:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/app214_stock_app_intelliJ_jar</output-path>
+    <root id="archive" name="app214-stock_app_intelliJ.jar">
+      <element id="module-output" name="app214-stock_app_intelliJ" />
+    </root>
+  </artifact>
+</component>

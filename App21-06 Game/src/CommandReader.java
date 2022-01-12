@@ -23,15 +23,23 @@ public class CommandReader
 
     private String commandWord = null;
     private String word2 = null;
+    public String selection;
+    private static Player player;
+
     /**
      * Create a parser to read from the terminal window.
      */
-    public CommandReader(Game game) 
+    public CommandReader(Game game)
     {
         this.game = game;
         reader = new Scanner(System.in);
     }
-    
+
+    public String readSelection(){
+        selection = reader.next();
+        return selection;
+    }
+
     /**
      * @return The next command from the user.
      */
@@ -44,19 +52,19 @@ public class CommandReader
 
         // Find up to two words on the line.
         Scanner tokenizer = new Scanner(inputLine);
-        
-        if(tokenizer.hasNext()) 
+
+        if(tokenizer.hasNext())
         {
             commandWord = tokenizer.next();      // get first word
-        
-            if(tokenizer.hasNext()) 
+
+            if(tokenizer.hasNext())
             {
                 word2 = tokenizer.next();      // get second word
                 // note: we just ignore the rest of the input line.
             }
             else word2 = null;
         }
-
+        //System.out.println();
         return executeCommand();
     }
 
@@ -81,8 +89,24 @@ public class CommandReader
         {
             return true;  // game over
         }
+        else if(Game.currentPlayer.getScore() <= 20 || Game.currentPlayer.getGrades() <= 20){
+            return true;  // game over
+        }
+        else{
+            System.out.println(" Huh? Check your spelling... ");
+        }
 
         // Return false means the game is not over
         return false;
+    }
+
+    public void choosePlayer()
+    {
+        String playerLine;
+
+        System.out.print(" > ");
+        playerLine = reader.nextLine().toLowerCase();
+
+        game.setPlayer(playerLine);
     }
 }

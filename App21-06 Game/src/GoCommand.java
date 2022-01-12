@@ -36,10 +36,15 @@ public class GoCommand extends ZuulCommand
         {
             System.out.println("There is no exit in this direction!");
         }
-        else 
+        else
         {
-            map.enterLocation(nextLocation);
-            System.out.println(map.getCurrentLocation().getLongDescription());
+            if(currentLocation.inventory.containsKey("card")){
+                map.enterLocation(nextLocation);
+                System.out.println(map.getCurrentLocation().getLongDescription());
+            }
+            else{
+                System.out.println(" You need your student card to enter in this building! ");
+            }
         }
     }
 }
