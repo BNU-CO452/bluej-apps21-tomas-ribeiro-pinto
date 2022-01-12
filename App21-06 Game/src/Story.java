@@ -28,6 +28,23 @@ public class Story {
 
     public static void hallsStory(){
         if(hallsSelection > 0 && hallsSelection < 3 && challengeCount > 5){
+            if(!Player.girlfriend) {
+                System.out.println(" Welcome back to the flat! After a hard day of work at university, you feel hungry. \n" +
+                        " Do you want to pay for a delivery or cook food by yourself? Choose one of the options available:\n" +
+                        " Delivery - I will order a pizza or a burger...\n" +
+                        " Cook - I will cook my own food, make a quick pasta maybe... ");
+                chooseStory();
+
+                if(hallsSelection == 3){
+                    Game.currentPlayer.changeScore(-5);
+                    System.out.println();
+                }
+                else if(hallsSelection == 4){
+                    Game.currentPlayer.changeScore(5);
+                    System.out.println();
+                }
+                challengeCount = challengeCount + 1;
+            }
             if(Player.girlfriend){
                 System.out.println(" As soon as you entered the flat, you receive a phone call from your girlfriend and she seems very upset with you. \n" +
                         " In the last days, she's being very rude with you and you can't stop arguing... Do you want answer the phone? \n\n" +
@@ -50,23 +67,6 @@ public class Story {
                     Game.currentPlayer.changeGrades(15);
                     Player.girlfriend = false;
                     System.out.println(ConsoleColours.ANSI_BG_YELLOW + " You are now single! " + ConsoleColours.ANSI_RESET + "\n");
-                }
-                challengeCount = challengeCount + 1;
-            }
-            if(!Player.girlfriend) {
-                System.out.println(" Welcome back to the flat! After a hard day of work at university, you feel hungry. \n" +
-                        " Do you want to pay for a delivery? Choose one of the options available:\n" +
-                        " Delivery - I will order a pizza or a burger...\n" +
-                        " Cook - I will cook my own food, make a quick pasta maybe... ");
-                chooseStory();
-
-                if(hallsSelection == 3){
-                    Game.currentPlayer.changeScore(-5);
-                    System.out.println();
-                }
-                else if(hallsSelection == 4){
-                    Game.currentPlayer.changeScore(5);
-                    System.out.println();
                 }
                 challengeCount = challengeCount + 1;
             }
@@ -261,9 +261,8 @@ public class Story {
         }
         else if(Game.currentPlayer.getGrades() > 50 && Game.currentPlayer.getScore() > 50){
             System.out.println(" Congratulations and welcome to the graduation ceremony, you just finished university with success!\n" +
-                    " Your grades: "+ Game.currentPlayer.getGrades() +"% | Your score: "+ Game.currentPlayer.getScore() +"% \n" +
-                    " You just won the game! \n");
-            Player.quit = true;
+                    " Your grades: "+ Game.currentPlayer.getGrades() +"% | Your score: "+ Game.currentPlayer.getScore() +"% \n");
+            Player.win = true;
         }
         else{
             System.out.println(" Unfortunately you were not able to pass all the modules and failed university. You are now in great debt... \n" +
@@ -289,7 +288,7 @@ public class Story {
                     " A- ArrayList in Java uses an index-based structure.        B- The size of ArrayList can increase or decrease at runtime. \n " +
                     " C- Duplicate elements are not allowed in the array list.   D- It allows to delete elements.");
             chooseStory();
-            if(labSelection == 4) {
+            if(labSelection == 5) {
                 correct = correct + 1;
                 labSelection = 2;
             }
@@ -297,7 +296,7 @@ public class Story {
                     " A- ArrayList<E> list = new Array();     B- ArrayList<E> list = new ArrayList<E>(); \n " +
                     " C- list = new Array(E);                 D- ArrayList<E> list = new ArrayList(<E>); ");
             chooseStory();
-            if(labSelection == 5) {
+            if(labSelection == 4) {
                 correct = correct + 1;
             }
             System.out.println(" You answered " + correct +"/2 questions correctly " + ConsoleColours.ANSI_RESET);
@@ -367,12 +366,22 @@ public class Story {
                     }
                 }
             }
+            else if(Player.girlfriend){
+                switch (selection) {
+                    case "yes" -> hallsSelection = 3;
+                    case "no" -> hallsSelection = 4;
+                    default -> {
+                        System.out.println("Please input yes or no to submit your choice:");
+                        chooseStory();
+                    }
+                }
+            }
             else{
                 switch (selection) {
                     case "delivery" -> hallsSelection = 3;
                     case "cook" -> hallsSelection = 4;
                     default -> {
-                        System.out.println("Please input yes or no to submit your choice:");
+                        System.out.println("Please input one of the options available to submit your choice:");
                         chooseStory();
                     }
                 }

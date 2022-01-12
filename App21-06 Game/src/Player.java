@@ -13,6 +13,7 @@ public class Player {
     public static ArrayList<Player> players;
     public Game game;
     public static boolean quit = false;
+    public static boolean win = false;
 
     public Player(String name, int score, int grades) {
         this.name = name;

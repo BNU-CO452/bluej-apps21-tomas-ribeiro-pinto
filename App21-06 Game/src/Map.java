@@ -4,10 +4,14 @@
  * linking all the Locations in the game to
  * form a 2D or 3D network
  *
- *  [Pub]<---->[Outside]<---->[Theatre]
- *                 |
- *          [Computer Lab]<---->[Office]
- *             
+ *                  [Computing lab]
+ *                         |
+ *  [Graduation]<---->[Reception]<---->[Café]
+ *                         |
+ *        [SU]<------->[Outside]<---->[Halls]
+ *                         |
+ *                       [Pub]
+ *
  * @author Derek Peacock and Nicholas Day
  * @version 2021-08-22
  */

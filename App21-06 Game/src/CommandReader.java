@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
 /**
@@ -87,13 +88,24 @@ public class CommandReader
         }
         else if(commandWord.equals(CommandWords.QUIT.word))
         {
+            Player.quit = true;
             return true;  // game over
         }
         else if(Game.currentPlayer.getScore() <= 20 || Game.currentPlayer.getGrades() <= 20){
             return true;  // game over
         }
         else{
-            System.out.println(" Huh? Check your spelling... ");
+            Random random = new Random();
+            int result = random.nextInt(6-1) + 1;
+
+            switch (result) {
+                case 1 -> System.out.println(" Huh? Check your spelling... ");
+                case 2 -> System.out.println(" Are you having a stroke? Check your spelling... ");
+                case 3 -> System.out.println(" What is that supposed to mean???");
+                case 4 -> System.out.println(" I don't speak Chinese... Check your spelling!");
+                case 5 -> System.out.println(" Do you really know how to write? What does that mean?");
+                case 6 -> System.out.println(" What??? Check your spelling...");
+            }
         }
 
         // Return false means the game is not over
