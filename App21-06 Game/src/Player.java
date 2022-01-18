@@ -14,6 +14,7 @@ public class Player {
     public Game game;
     public static boolean quit = false;
     public static boolean win = false;
+    public static int wallet;
 
     public Player(String name, int score, int grades) {
         this.name = name;
@@ -32,10 +33,6 @@ public class Player {
 
     public int getGrades() {
         return grades;
-    }
-
-    public boolean getGirlfriend() {
-        return girlfriend;
     }
 
     public void changeScore(int amount) {
@@ -66,5 +63,17 @@ public class Player {
         if(grades <= 20){
             quit = true;
         }
+    }
+
+    public static void getCafeCoins(){
+        wallet = wallet + Story.cafeCoins;
+        Story.cafeCoins = 0;
+        System.out.println(" " +ConsoleColours.ANSI_BG_BLUE + "You now have: £" + wallet + " in your wallet." + ConsoleColours.ANSI_RESET);
+    }
+
+    public static void getCoins(int amount){
+        wallet = wallet + amount;
+        System.out.println(" " +ConsoleColours.ANSI_BG_BLUE + "You found " + amount + " coins by completing this challenge!" + ConsoleColours.ANSI_RESET);
+        System.out.println(" You have: £" + wallet + " in your wallet.\n");
     }
 }

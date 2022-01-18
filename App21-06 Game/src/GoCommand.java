@@ -5,7 +5,8 @@
  * two locations are linked by a valid exit
  *
  * @author Derek Peacock & Nicholas Day
- * @version 2021-08-23
+ * @modified Tomás Pinto
+ * @version 18th January 2022
  */
 public class GoCommand extends ZuulCommand
 {
@@ -15,8 +16,11 @@ public class GoCommand extends ZuulCommand
     {
         super(zuul);
         this.direction = direction;
-    }    
+    }
 
+    /**
+     * Executes the Go command
+     */
     public void execute()
     {
         if(direction == null) 
@@ -38,6 +42,7 @@ public class GoCommand extends ZuulCommand
         }
         else
         {
+            //If the player has the student card in their inventory
             if(Location.inventory.containsKey("card")){
                 map.enterLocation(nextLocation);
                 System.out.println(Map.getCurrentLocation().getLongDescription());

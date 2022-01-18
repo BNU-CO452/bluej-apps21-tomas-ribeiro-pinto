@@ -1,8 +1,7 @@
-
 /**
  * This class is reponsible for creating and
  * linking all the Locations in the game to
- * form a 2D or 3D network
+ * form a location network
  *
  *                  [Computing lab]
  *                         |
@@ -13,13 +12,13 @@
  *                       [Pub]
  *
  * @author Derek Peacock and Nicholas Day
- * @version 2021-08-22
+ * @modified Tomás Pinto
+ * @version 18th January 2022
  */
 public class Map
 {
     // Need to add a list of exits
     public static Location outside, su, pub, halls, reception, cafe, graduation, lab;
-
     public static Location currentLocation;
 
     /**
@@ -125,6 +124,8 @@ public class Map
 
         graduation.setExit("east", reception);
         reception.setExit("west", graduation);
+
+        graduation.setItem(new Item("Diploma", "Win the game by taking this item"), "diploma");
     }
 
     private void createLab()

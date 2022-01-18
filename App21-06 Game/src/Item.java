@@ -1,7 +1,6 @@
-import java.util.HashMap;
-
 /**
- * Inventory Class description
+ * This class is the blueprint that creates
+ * the items that a player can pick up during the game
  */
 
 public class Item{

@@ -1,4 +1,3 @@
-import java.io.Console;
 import java.util.Objects;
 import java.util.Set;
 import java.util.HashMap;
@@ -6,29 +5,26 @@ import java.util.HashMap;
 /**
  * Class Location - a location on the map of an adventure game.
  *
- * This class is part of the "World of Zuul" application. 
- * "World of Zuul" is a very simple, text based adventure game.  
- *
  * A "Location" represents one place in the scenery of the game.  It is 
  * connected to other locations via exits.  For each existing exit, the 
  * location stores a reference to the neighboring locations.
  * 
  * @author  Michael Kölling and David J. Barnes
- * Modified by Derek Peacock & Nicholas Day
- * @version 2016.02.29
+ * @modified Tomás Pinto
+ * @version 18th January 2022
  */
 
 public class Location 
 {
     private String description;
-    // stores exits of this room.
-    private Item item;
-    private Game game;
-    private Map map;
-    private Story story;
+    // Stores the exits of this room.
     public HashMap<String, Location> exits;
+    // Creates the player inventory
     public static HashMap<String, Item> inventory;
+    // Stores the location of the items in the game
     public HashMap<String, Item> itemlist;
+    // Score and grades of the player
+    public Item item;
     public String status;
 
     /**
@@ -50,7 +46,7 @@ public class Location
      * @param direction The direction of the exit.
      * @param neighbor  The room to which the exit leads.
      */
-    public void setExit(String direction, Location neighbor) 
+    public void setExit(String direction, Location neighbor)
     {
         exits.put(direction, neighbor);
     }
@@ -73,19 +69,43 @@ public class Location
     /**
      * Return a description of the room in the form:
      *     You are in the kitchen.
-     *     Exits: north west
-     * @return A long description of this room
+     *
+     *     Here is the story and challenge of each location
+     *
+     *     Exits: north, west
+     *     Inventory: beer, card
+     *     Score: 50% | Grades 60%
      */
     public String getLongDescription()
     {
+        System.out.println(" You are " + description + "\n");
         String returnString = chooseStory() + getExitString();
-            if(inventory.size() == 0) {
-                return returnString + getStatus();
-            }
+        if (inventory.size() == 0) {
+           returnString = returnString + getStatus();
+        }
+        else {
+            returnString = returnString + "\n" + getInventoryString() + getStatus();
+        }
 
-        return returnString + ("\n" + getInventoryString() + getStatus());
+        // In the last challenge of halls and graduation,
+        // we don't need the exits and other information anymore.
+        if (Map.graduation.equals(Map.getCurrentLocation())) {
+            if (Story.challengeCount == 7) {
+                returnString = chooseStory();
+            }
+        }
+        else if (Map.halls.equals(Map.getCurrentLocation())) {
+            if (Story.challengeCount == 6) {
+                returnString = chooseStory();
+            }
+        }
+
+        return returnString;
     }
 
+    /**
+     * @return the score and grades of the current player
+     */
     public String getStatus(){
         status = "\n Score: " + Game.currentPlayer.getScore() + "%" + "  Grades: " + Game.currentPlayer.getGrades() + "%" ;
         return status;
@@ -93,7 +113,7 @@ public class Location
 
     /**
      * Return a string listing the locations's exits,
-     * for example "Exits: north west".
+     * for example "Exits: north, west".
      */
     private String getExitString()
     {
@@ -121,15 +141,27 @@ public class Location
         return exits.get(direction);
     }
 
+    /**
+     * Set the item in a HashMap
+     *
+     * @param item the item object
+     * @param name The name of the item
+     */
     public void setItem(Item item, String name){
         this.item = item;
         itemlist.put(name, item);
     }
 
+    /**
+     * Take item from a location and add it to player's inventory
+     *
+     * @param itemName The item name
+     */
     public void takeItem(String itemName) {
         if(itemlist.containsKey(itemName)) {
             Item itemIndex = itemlist.get(itemName);
             inventory.put(itemName, itemIndex);
+            // Remove the item from the current location
             itemlist.remove(itemName);
             System.out.println(" " + ConsoleColours.ANSI_BG_YELLOW + "The item '" + itemName + "' has been taken. " + ConsoleColours.ANSI_RESET);
             pointsForTaking(itemName);
@@ -143,6 +175,10 @@ public class Location
         }
     }
 
+    /**
+     * Returns the Player's Inventory
+     * @return
+     */
     public String getInventoryString()
     {
         String itemNames = " Inventory: ";
@@ -159,8 +195,14 @@ public class Location
         return itemNames;
     }
 
+    /**
+     * Depending on the current location of the player,
+     * it displays the story and challenge of each place.
+     *
+     * @return
+     */
     public String chooseStory(){
-        System.out.println(" You are " + description + "\n");
+
         if (Map.getCurrentLocation() == Map.outside){
             Story.outsideStory();
         }
@@ -188,6 +230,13 @@ public class Location
         return "";
     }
 
+    /**
+     * Some items get points for being taken from a location,
+     * and they increase or decrease the status attributes
+     * of the player.
+     *
+     * @param itemName
+     */
     public void pointsForTaking(String itemName){
         if(Objects.equals(itemName, "sanitizer")){
             Game.currentPlayer.changeScore(5);
@@ -202,6 +251,11 @@ public class Location
         if(Objects.equals(itemName, "beer")){
             Game.currentPlayer.changeScore(5);
             System.out.println(ConsoleColours.ANSI_GREEN + " Enjoy the beer :)" + ConsoleColours.ANSI_RESET);
+            Player.getCoins(1);
+        }
+        if(Objects.equals(itemName, "diploma")){
+            Player.win = true;
+            System.out.println(ConsoleColours.ANSI_GREEN + " Congrats, you have won the game by cheating! That's life sometimes :)" + ConsoleColours.ANSI_RESET);
         }
     }
 }

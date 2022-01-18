@@ -1,6 +1,5 @@
 import java.util.Random;
 import java.util.Scanner;
-import java.util.ArrayList;
 /**
  * This class is part of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.  
@@ -15,7 +14,8 @@ import java.util.ArrayList;
  * returns a command object that is marked as an unknown command.
  * 
  * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @modified Tomás Pinto
+ * @version 18th January 2022
  */
 public class CommandReader 
 {
@@ -24,8 +24,6 @@ public class CommandReader
 
     private String commandWord = null;
     private String word2 = null;
-    public String selection;
-    private static Player player;
 
     /**
      * Create a parser to read from the terminal window.
@@ -36,15 +34,10 @@ public class CommandReader
         reader = new Scanner(System.in);
     }
 
-    public String readSelection(){
-        selection = reader.next();
-        return selection;
-    }
-
     /**
      * @return The next command from the user.
      */
-    public boolean getCommand() 
+    public boolean getCommand()
     {
         String inputLine;  
         
@@ -65,22 +58,38 @@ public class CommandReader
             }
             else word2 = null;
         }
-        //System.out.println();
         return executeCommand();
     }
 
+    /**
+     * Executes the command the user inputs
+     * @return
+     */
     private boolean executeCommand()
     {
         if(commandWord.equals(CommandWords.GO.word))
         {
+            //e.g. go south
             GoCommand go = new GoCommand(game, word2);
             go.execute();
         }
         else if(commandWord.equals(CommandWords.TAKE.word))
         {
+            //e.g. take beer
             TakeCommand take = new TakeCommand(game, word2);
             take.execute();
-        }        
+        }
+        else if(commandWord.equals(CommandWords.WALLET.word))
+        {
+            WalletCommand wallet = new WalletCommand(game);
+            wallet.execute();
+        }
+        else if(commandWord.equals(CommandWords.BUY.word))
+        {
+            //e.g. buy score
+            BuyCommand buy = new BuyCommand(game, word2);
+            buy.execute();
+        }
         else if(commandWord.equals(CommandWords.HELP.word))
         {
             HelpCommand help = new HelpCommand(game);
@@ -91,22 +100,30 @@ public class CommandReader
             MusicCommand music = new MusicCommand(game);
             music.execute();
         }
+        else if(commandWord.equals(CommandWords.MAP.word))
+        {
+            MapCommand map = new MapCommand(game);
+            map.execute();
+        }
         else if(commandWord.equals(CommandWords.QUIT.word))
         {
             return true;  // game over
         }
         else if(Game.currentPlayer.getScore() <= 20 || Game.currentPlayer.getGrades() <= 20){
-            return true;  // game over
+            return true;  // game over if the player has less than 21% on grades or score
         }
+        //In case the user inputs a word which is not a command
         else{
+            //Uses Random class to generate a number
             Random random = new Random();
+            //sets the bound from 1 to 6
             int result = random.nextInt(6-1) + 1;
-
+            //Uses that number to choose a random sentence of the list
             switch (result) {
                 case 1 -> System.out.println(" Huh? Check your spelling... ");
                 case 2 -> System.out.println(" Are you having a stroke? Check your spelling... ");
                 case 3 -> System.out.println(" What is that supposed to mean???");
-                case 4 -> System.out.println(" I don't speak Chinese... Check your spelling!");
+                case 4 -> System.out.println(" I don't speak that language... Check your spelling!");
                 case 5 -> System.out.println(" Do you really know how to write? What does that mean?");
                 case 6 -> System.out.println(" What??? Check your spelling...");
             }
@@ -116,6 +133,10 @@ public class CommandReader
         return false;
     }
 
+    /**
+     * This method reads the input to choose the character that
+     * will play the game: John, Robert or Connor
+     */
     public void choosePlayer()
     {
         String playerLine;
