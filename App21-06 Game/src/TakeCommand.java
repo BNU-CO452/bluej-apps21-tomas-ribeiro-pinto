@@ -20,11 +20,11 @@ public class TakeCommand extends ZuulCommand
     {
         super(zuul);
         this.itemName = itemName;
-    }    
+    }
 
     public void execute()
     {
-        if(itemName == null)
+        if (itemName == null)
         {
             // if there is no second word, we don't know what to take...
             System.out.println("Take what?");
@@ -35,6 +35,6 @@ public class TakeCommand extends ZuulCommand
         // remove the item from the current room
         // and add it to the player's inventory
         map.getCurrentLocation().takeItem(itemName);
-            // Print out a suitable message.
+        // Print out a suitable message.
     }
 }

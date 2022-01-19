@@ -27,11 +27,11 @@ public class HelpCommand extends ZuulCommand
 
         //For each loop that generates the help table with
         // command words and their descriptions.
-        for(CommandWords command : CommandWords.values())
+        for (CommandWords command : CommandWords.values())
         {
-            System.out.println(" " + command.word + 
-                               "\t  : " + command.description);                        
-        }   
+            System.out.println(" " + command.word +
+                    "\t  : " + command.description);
+        }
         System.out.println();
         System.out.println(" e.g. go west, take beer");
         System.out.println();

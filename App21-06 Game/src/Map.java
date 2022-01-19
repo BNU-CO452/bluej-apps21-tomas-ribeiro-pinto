@@ -2,18 +2,18 @@
  * This class is reponsible for creating and
  * linking all the Locations in the game to
  * form a location network
- *
- *                  [Computing lab]
- *                         |
- *  [Graduation]<---->[Reception]<---->[Café]
- *                         |
- *        [SU]<------->[Outside]<---->[Halls]
- *                         |
- *                       [Pub]
+ * <p>
+ * [Computing lab]
+ * |
+ * [Graduation]<---->[Reception]<---->[Café]
+ * |
+ * [SU]<------->[Outside]<---->[Halls]
+ * |
+ * [Pub]
  *
  * @author Derek Peacock and Nicholas Day
- * @modified Tomás Pinto
  * @version 18th January 2022
+ * @modified Tomás Pinto
  */
 public class Map
 {
@@ -48,10 +48,10 @@ public class Map
 
         currentLocation = outside;  // start game outside
     }
-    
+
     /**
      * Create the outside and link it to the
-     * theatre, lab and pub
+     * su, halls and pub
      */
     private void createOutside()
     {
@@ -61,7 +61,7 @@ public class Map
     }
 
     /**
-     * Create the theatre linked to the outside
+     * Create the su linked to the outside
      */
     private void createSu()
     {
@@ -82,11 +82,12 @@ public class Map
         outside.setExit("south", pub);
         pub.setExit("north", outside);
 
+        // Set item to pick up while at the pub
         pub.setItem(new Item("Beer", "Relax with some booze"), "beer");
     }
 
     /**
-     * Create the office linked to the lab
+     * Create the halls linked to the outside
      */
     private void createHalls()
     {
@@ -95,13 +96,16 @@ public class Map
         halls.setExit("west", outside);
         outside.setExit("east", halls);
     }
-    
+
     /**
-     * Create the lab and link it to the outside and office
+     * Create the university reception and link it to the outside,
+     * café, graduation theatre and lab
      */
     private void createReception()
     {
         reception = new Location("in the university reception.");
+
+        // Set the items present in this location
         reception.setItem(new Item("Sanitizer", "Use the sanitizer to keep you free from any virus"), "sanitizer");
         reception.setItem(new Item("Water", "Use the sanitizer to keep you free from any virus"), "water");
         reception.setItem(new Item("Snack", "Use the sanitizer to keep you free from any virus"), "snack");
@@ -110,6 +114,9 @@ public class Map
         reception.setExit("south", outside);
     }
 
+    /**
+     * Create the café linked with the reception
+     */
     private void createCafe()
     {
         cafe = new Location("in the university café.");
@@ -118,6 +125,9 @@ public class Map
         reception.setExit("east", cafe);
     }
 
+    /**
+     * Create the graduation theatre
+     */
     private void createGraduation()
     {
         graduation = new Location("in graduation room.");
@@ -125,9 +135,13 @@ public class Map
         graduation.setExit("east", reception);
         reception.setExit("west", graduation);
 
+        // Easter Egg that makes the user win the game
         graduation.setItem(new Item("Diploma", "Win the game by taking this item"), "diploma");
     }
 
+    /**
+     * Create the lab and link it with the reception
+     */
     private void createLab()
     {
         lab = new Location("in the computing lab.");
@@ -136,12 +150,21 @@ public class Map
         reception.setExit("north", lab);
     }
 
-
+    /**
+     * This method returns the current location the user is in
+     *
+     * @return Location object
+     */
     public static Location getCurrentLocation()
     {
         return currentLocation;
     }
-    
+
+    /**
+     * Method that allows to enter another location
+     *
+     * @param nextLocation
+     */
     public static void enterLocation(Location nextLocation)
     {
         currentLocation = nextLocation;

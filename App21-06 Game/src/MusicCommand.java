@@ -1,11 +1,9 @@
-
 /**
  * This command allows the player to
- * take or pickup an item from a room
- * and carry it around to use somewhere
- * else
+ * turn on or off the background music current playing
  *
  * @author Derek Peacock & Nicholas Day
+ * @modified Tomás Pinto
  * @version 2021-08-23
  */
 public class MusicCommand extends ZuulCommand
@@ -18,15 +16,18 @@ public class MusicCommand extends ZuulCommand
         super(zuul);
     }
 
-    public void execute() {
-        if (Game.currentBackground.isActive()) {
+    public void execute()
+    {
+        if (Game.currentBackground.isActive())
+        {
             Game.stopSound(Game.currentBackground);
             Game.backgroundMute = true;
-            System.out.println(ConsoleColours.ANSI_RED + " Music off" +ConsoleColours.ANSI_RESET);
+            System.out.println(ConsoleColours.ANSI_RED + " Music off" + ConsoleColours.ANSI_RESET);
         }
-        else {
+        else
+        {
             Game.playSound();
-            System.out.println(ConsoleColours.ANSI_RED + " Music on" +ConsoleColours.ANSI_RESET);
+            System.out.println(ConsoleColours.ANSI_RED + " Music on" + ConsoleColours.ANSI_RESET);
         }
     }
 }

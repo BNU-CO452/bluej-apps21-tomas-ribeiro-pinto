@@ -18,13 +18,16 @@ public class WalletCommand extends ZuulCommand
         super(zuul);
     }
 
-    public void execute() {
-        if (Map.currentLocation == Map.cafe && Story.cafeCoins > 0){
+    public void execute()
+    {
+        if (Map.currentLocation == Map.cafe && Story.cafeCoins > 0)
+        {
             Player.getCafeCoins();
         }
-        else{
+        else
+        {
             System.out.println(" Invalid command, there aren't coins to pick up in this location.");
-            System.out.println(" " +ConsoleColours.ANSI_BG_BLUE + "You have: £" + Player.wallet + " in your wallet." + ConsoleColours.ANSI_RESET);
+            System.out.println(" " + ConsoleColours.ANSI_BG_BLUE + "You have: £" + Player.wallet + " in your wallet." + ConsoleColours.ANSI_RESET);
         }
     }
 }

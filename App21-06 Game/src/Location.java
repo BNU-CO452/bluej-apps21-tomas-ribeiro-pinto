@@ -4,17 +4,17 @@ import java.util.HashMap;
 
 /**
  * Class Location - a location on the map of an adventure game.
- *
- * A "Location" represents one place in the scenery of the game.  It is 
- * connected to other locations via exits.  For each existing exit, the 
+ * <p>
+ * A "Location" represents one place in the scenery of the game.  It is
+ * connected to other locations via exits.  For each existing exit, the
  * location stores a reference to the neighboring locations.
- * 
- * @author  Michael Kölling and David J. Barnes
- * @modified Tomás Pinto
+ *
+ * @author Michael Kölling and David J. Barnes
  * @version 18th January 2022
+ * @modified Tomás Pinto
  */
 
-public class Location 
+public class Location
 {
     private String description;
     // Stores the exits of this room.
@@ -33,7 +33,7 @@ public class Location
      * "description" is something like "a kitchen" or
      * "an open court yard".
      */
-    public Location(String description) 
+    public Location(String description)
     {
         this.description = description;
         exits = new HashMap<>();
@@ -43,6 +43,7 @@ public class Location
 
     /**
      * Define an exit from this room.
+     *
      * @param direction The direction of the exit.
      * @param neighbor  The room to which the exit leads.
      */
@@ -59,7 +60,8 @@ public class Location
     {
         String returnString = " You are " + description + "\n \n" + getExitString();
 
-        if(inventory.size() == 0) {
+        if (inventory.size() == 0)
+        {
             return returnString + getStatus();
         }
 
@@ -68,34 +70,40 @@ public class Location
 
     /**
      * Return a description of the room in the form:
-     *     You are in the kitchen.
-     *
-     *     Here is the story and challenge of each location
-     *
-     *     Exits: north, west
-     *     Inventory: beer, card
-     *     Score: 50% | Grades 60%
+     * You are in the kitchen.
+     * <p>
+     * Here is the story and challenge of each location
+     * <p>
+     * Exits: north, west
+     * Inventory: beer, card
+     * Score: 50% | Grades 60%
      */
     public String getLongDescription()
     {
         System.out.println(" You are " + description + "\n");
         String returnString = chooseStory() + getExitString();
-        if (inventory.size() == 0) {
-           returnString = returnString + getStatus();
+        if (inventory.size() == 0)
+        {
+            returnString = returnString + getStatus();
         }
-        else {
+        else
+        {
             returnString = returnString + "\n" + getInventoryString() + getStatus();
         }
 
         // In the last challenge of halls and graduation,
         // we don't need the exits and other information anymore.
-        if (Map.graduation.equals(Map.getCurrentLocation())) {
-            if (Story.challengeCount == 7) {
+        if (Map.graduation.equals(Map.getCurrentLocation()))
+        {
+            if (Story.challengeCount == 7)
+            {
                 returnString = chooseStory();
             }
         }
-        else if (Map.halls.equals(Map.getCurrentLocation())) {
-            if (Story.challengeCount == 6) {
+        else if (Map.halls.equals(Map.getCurrentLocation()))
+        {
+            if (Story.challengeCount == 6)
+            {
                 returnString = chooseStory();
             }
         }
@@ -106,8 +114,9 @@ public class Location
     /**
      * @return the score and grades of the current player
      */
-    public String getStatus(){
-        status = "\n Score: " + Game.currentPlayer.getScore() + "%" + "  Grades: " + Game.currentPlayer.getGrades() + "%" ;
+    public String getStatus()
+    {
+        status = "\n Score: " + Game.currentPlayer.getScore() + "%" + "  Grades: " + Game.currentPlayer.getGrades() + "%";
         return status;
     }
 
@@ -119,10 +128,10 @@ public class Location
     {
         String exitNames = " Exits: ";
         Set<String> keys = exits.keySet();
-        
-        for(String exit : keys) 
+
+        for (String exit : keys)
         {
-            if(exitNames.length() > 8)
+            if (exitNames.length() > 8)
                 exitNames += ", " + exit;
             else
                 exitNames += exit;
@@ -133,10 +142,11 @@ public class Location
     /**
      * Return the room that is reached if we go from this room in direction
      * "direction". If there is no room in that direction, return null.
+     *
      * @param direction The exit's direction.
      * @return The room in the given direction.
      */
-    public Location getExit(String direction) 
+    public Location getExit(String direction)
     {
         return exits.get(direction);
     }
@@ -147,7 +157,8 @@ public class Location
      * @param item the item object
      * @param name The name of the item
      */
-    public void setItem(Item item, String name){
+    public void setItem(Item item, String name)
+    {
         this.item = item;
         itemlist.put(name, item);
     }
@@ -157,8 +168,10 @@ public class Location
      *
      * @param itemName The item name
      */
-    public void takeItem(String itemName) {
-        if(itemlist.containsKey(itemName)) {
+    public void takeItem(String itemName)
+    {
+        if (itemlist.containsKey(itemName))
+        {
             Item itemIndex = itemlist.get(itemName);
             inventory.put(itemName, itemIndex);
             // Remove the item from the current location
@@ -167,16 +180,19 @@ public class Location
             pointsForTaking(itemName);
             System.out.println("\n" + getShortDescription());
         }
-        else if(inventory.containsKey(itemName)){
+        else if (inventory.containsKey(itemName))
+        {
             System.out.println(" " + ConsoleColours.ANSI_BG_RED + "The item '" + itemName + "' is already in your inventory " + ConsoleColours.ANSI_RESET);
         }
-        else{
+        else
+        {
             System.out.println(" " + ConsoleColours.ANSI_BG_RED + "There is no such item as '" + itemName + "' in your current location! " + ConsoleColours.ANSI_RESET);
         }
     }
 
     /**
      * Returns the Player's Inventory
+     *
      * @return
      */
     public String getInventoryString()
@@ -184,11 +200,15 @@ public class Location
         String itemNames = " Inventory: ";
         Set<String> keys = inventory.keySet();
 
-        for(String item : keys) {
+        for (String item : keys)
+        {
 
-            if (itemNames.length() > 12) {
+            if (itemNames.length() > 12)
+            {
                 itemNames += ", " + item;
-            } else {
+            }
+            else
+            {
                 itemNames += item;
             }
         }
@@ -201,30 +221,39 @@ public class Location
      *
      * @return
      */
-    public String chooseStory(){
+    public String chooseStory()
+    {
 
-        if (Map.getCurrentLocation() == Map.outside){
+        if (Map.getCurrentLocation() == Map.outside)
+        {
             Story.outsideStory();
         }
-        else if(Map.getCurrentLocation() == Map.halls){
+        else if (Map.getCurrentLocation() == Map.halls)
+        {
             Story.hallsStory();
         }
-        else if(Map.getCurrentLocation() == Map.reception){
+        else if (Map.getCurrentLocation() == Map.reception)
+        {
             Story.receptionStory();
         }
-        else if(Map.getCurrentLocation() == Map.su){
+        else if (Map.getCurrentLocation() == Map.su)
+        {
             Story.suStory();
         }
-        else if(Map.getCurrentLocation() == Map.graduation){
+        else if (Map.getCurrentLocation() == Map.graduation)
+        {
             Story.graduationStory();
         }
-        else if(Map.getCurrentLocation() == Map.cafe){
+        else if (Map.getCurrentLocation() == Map.cafe)
+        {
             Story.cafeStory();
         }
-        else if(Map.getCurrentLocation() == Map.lab){
+        else if (Map.getCurrentLocation() == Map.lab)
+        {
             Story.labStory();
         }
-        else if(Map.getCurrentLocation() == Map.pub){
+        else if (Map.getCurrentLocation() == Map.pub)
+        {
             Story.pubStory();
         }
         return "";
@@ -237,23 +266,29 @@ public class Location
      *
      * @param itemName
      */
-    public void pointsForTaking(String itemName){
-        if(Objects.equals(itemName, "sanitizer")){
+    public void pointsForTaking(String itemName)
+    {
+        if (Objects.equals(itemName, "sanitizer"))
+        {
             Game.currentPlayer.changeScore(5);
             System.out.println(ConsoleColours.ANSI_GREEN + " Thank you for keeping our campus Covid-19 secure!" + ConsoleColours.ANSI_RESET);
         }
-        if(Objects.equals(itemName, "water")){
+        if (Objects.equals(itemName, "water"))
+        {
             Game.currentPlayer.changeScore(5);
         }
-        if(Objects.equals(itemName, "snack")){
+        if (Objects.equals(itemName, "snack"))
+        {
             Game.currentPlayer.changeScore(-10);
         }
-        if(Objects.equals(itemName, "beer")){
+        if (Objects.equals(itemName, "beer"))
+        {
             Game.currentPlayer.changeScore(5);
             System.out.println(ConsoleColours.ANSI_GREEN + " Enjoy the beer :)" + ConsoleColours.ANSI_RESET);
             Player.getCoins(1);
         }
-        if(Objects.equals(itemName, "diploma")){
+        if (Objects.equals(itemName, "diploma"))
+        {
             Player.win = true;
             System.out.println(ConsoleColours.ANSI_GREEN + " Congrats, you have won the game by cheating! That's life sometimes :)" + ConsoleColours.ANSI_RESET);
         }
