@@ -50,7 +50,7 @@ public class Game
         // Enter the main command loop.  Here we repeatedly 
         // read commands and execute them until the game is over.
 
-        while (!gameOver && !Player.quit && !Player.win)
+        while (!gameOver && !Player.lose && !Player.win)
         {
             gameOver = reader.getCommand();
         }
@@ -86,7 +86,7 @@ public class Game
             frame.setVisible(true);
             System.out.println("\n \n" + ConsoleColours.ANSI_BG_GREEN + " You have won the game! Congratulations..." + ConsoleColours.ANSI_RESET);
         }
-        if (Player.quit)
+        if (Player.lose)
         {
             Thread.sleep(1000);
             JFrame frame = new JFrame("You Lost the Game");
@@ -183,8 +183,8 @@ public class Game
         System.out.println();
         System.out.println(ConsoleColours.ANSI_BG_GREEN + "Welcome to Save the Student!" + ConsoleColours.ANSI_RESET);
         System.out.println("Save the student is an exciting new game about the daily life of a university student.");
-        System.out.println("Pick a student among the available characters and save them from disaster" + "\n" + "by leading them to their graduation ceremony successfully!");
-        System.out.println("For this, you will have to navigate through the campus and complete the challenges of each stage.");
+        System.out.println("Pick a student among the available characters, and save them from disaster" + "\n" + "by leading them to their graduation ceremony successfully!");
+        System.out.println("For this, you will have to navigate through the campus and complete the challenges of each academic stage.");
         System.out.println("But be careful! You might catch the freshers’ flu, fail an assignment for being too drunk" + "\n"
                 + "or even realise that your annoying girlfriend is trying to manipulate you not to study…");
         System.out.println("Are you up to this challenge or will you let your character fail to graduate?");

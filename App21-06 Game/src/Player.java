@@ -18,7 +18,7 @@ public class Player
     public static ArrayList<Player> players;
     public Game game;
     // If the player has won the game
-    public static boolean quit = false;
+    public static boolean lose = false;
     // If the player has lost the game
     public static boolean win = false;
     // Place to store coins found in game
@@ -85,7 +85,7 @@ public class Player
         // In case the player has fallen below than 21%, they lose the game
         if (score <= 20)
         {
-            quit = true;
+            lose = true;
         }
     }
 
@@ -111,7 +111,7 @@ public class Player
         // In case the player has fallen below than 21%, they lose the game
         if (grades <= 20)
         {
-            quit = true;
+            lose = true;
         }
     }
 

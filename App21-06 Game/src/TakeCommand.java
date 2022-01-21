@@ -5,23 +5,23 @@
  * and carry it around to use somewhere
  * else
  *
- * @author Derek Peacock & Nicholas Day
- * @version 2021-08-23
+ * @author Tomás Pinto
+ * @version 21st January 2022
  */
 public class TakeCommand extends ZuulCommand
 {
     String itemName;
 
-    /**
-     * Take an item from a location and add it
-     * to the player's inventory.
-     */
     public TakeCommand(Game zuul, String itemName)
     {
         super(zuul);
         this.itemName = itemName;
     }
 
+    /**
+     * Take an item from a location and add it
+     * to the player's inventory.
+     */
     public void execute()
     {
         if (itemName == null)
@@ -35,6 +35,5 @@ public class TakeCommand extends ZuulCommand
         // remove the item from the current room
         // and add it to the player's inventory
         map.getCurrentLocation().takeItem(itemName);
-        // Print out a suitable message.
     }
 }

@@ -20,7 +20,7 @@ public class Story
     public static int cafeCoins = 3;
 
     /**
-     * Outside plot
+     * Outside story plot
      */
     public static void outsideStory()
     {
@@ -36,7 +36,7 @@ public class Story
     }
 
     /**
-     * Halls plot
+     * Halls story plot
      */
     public static void hallsStory()
     {
@@ -70,11 +70,13 @@ public class Story
                     Game.currentPlayer.changeScore(5);
                     System.out.println();
                 }
-                //increase challenge count
+                // Increase challenge count
                 challengeCount = challengeCount + 1;
-                //because
+                // Because this is the last challenge in the game,
+                // when the user completes it, the player is teleported to graduation.
                 checkGraduation();
             }
+            // Challenge if the player has a girlfriend
             if (Player.girlfriend)
             {
                 System.out.println(" As soon as you entered the flat, you receive a phone call from your girlfriend and she seems very upset with you. \n" +
@@ -82,6 +84,7 @@ public class Story
                         " Yes - I will answer the phone and try to calm her down.\n" +
                         " No - She is surely having a breakdown and you think she needs to cool off before talking to you.");
                 chooseStory();
+                // If answer is yes
                 if (hallsSelection == 3)
                 {
                     System.out.println(" You answer the phone and she asks you why aren't you at her place giving her attention.\n" +
@@ -92,6 +95,7 @@ public class Story
                     System.out.println(" " + ConsoleColours.ANSI_BG_YELLOW + "You are now single! " + ConsoleColours.ANSI_RESET + "\n");
                     Player.getCoins(2);
                 }
+                // If answer is no
                 else if (hallsSelection == 4)
                 {
                     System.out.println(" You decided to turn down the call and turn off the phone.\n" +
@@ -106,6 +110,7 @@ public class Story
                 checkGraduation();
             }
         }
+        // If the player has not been in this location yet
         if (hallsSelection == 0)
         {
             System.out.println(" Welcome to the student halls! Your room number is B34, and the reception working hours are from 9am to 9pm."
@@ -133,7 +138,7 @@ public class Story
     }
 
     /**
-     * Reception plot
+     * Reception story plot
      */
     public static void receptionStory()
     {
@@ -145,15 +150,17 @@ public class Story
     }
 
     /**
-     * Student's Union plot
+     * Student's Union story plot
      */
     public static void suStory()
     {
+        // If is between challenges, there is not a challenge in the SU
         if (challengeCount < 2 || challengeCount == 4)
         {
             System.out.println(" Welcome to the Student's Union! We have plenty of fun stuff to do during the term time. \n" +
                     " At the moment there is no event taking place, please come back later...\n");
         }
+        // Second challenge in this location
         else if (suSelection > 0)
         {
             if (Player.girlfriend)
@@ -166,6 +173,7 @@ public class Story
                         " 2 - I was about to come to University, when I was mugged by 2 green aliens and they took my wallet.\n" +
                         " 3 - My girlfriend is a nice person but sometimes she likes to hide my stuff, so I couldn't find the ID.");
                 chooseStory();
+                // Answer "1"
                 if (suSelection == 9)
                 {
                     System.out.println(" The security team expelled you and your girlfriend from the event. \n" +
@@ -173,6 +181,7 @@ public class Story
                             " Next time you see her, try to apologise if you want to keep her as your girlfriend. \n");
                     Game.currentPlayer.changeScore(-5);
                 }
+                // Answer "2"
                 else if (suSelection == 10)
                 {
                     System.out.println(" The security guy laughed but as a matter of security she couldn't let you both enter the event. \n" +
@@ -181,6 +190,7 @@ public class Story
                             " Next time you see her, try to apologise if you want to keep her as your girlfriend. \n");
                     Game.currentPlayer.changeScore(-5);
                 }
+                // Answer "3"
                 else if (suSelection == 11)
                 {
                     System.out.println(" Your girlfriend called you a liar and you started arguing about the annoying things you have been doing in the past weeks. \n" +
@@ -192,6 +202,8 @@ public class Story
                     Player.girlfriend = false;
                 }
                 challengeCount = challengeCount + 1;
+                // Print an alert so the user can know if it's worth
+                // going to the pub and buy score or grades.
                 System.out.println(" " + ConsoleColours.ANSI_BLUE + "There is one challenge left in the student halls in order to graduate or fail it. Do you think you're ready for the last challenge?\n" + ConsoleColours.ANSI_RESET);
             }
             if (!Player.girlfriend && suSelection < 9)
@@ -234,8 +246,10 @@ public class Story
                 System.out.println(" " + ConsoleColours.ANSI_BLUE + "There is one challenge left in the student halls in order to graduate or fail it. Do you think you're ready for the last challenge?\n" + ConsoleColours.ANSI_RESET);
             }
         }
+        // First challenge in this location
         else if (suSelection == 0)
         {
+            // stops the music to play the Rock Sound
             if (Game.currentBackground.isActive())
             {
                 Game.stopSound(Game.currentBackground);
@@ -301,15 +315,17 @@ public class Story
             {
                 Game.stopSound(Game.currentBackground);
             }
+            // Turn on again the background music
             Game.playSound();
         }
     }
 
     /**
-     * Café plot
+     * Café story plot
      */
     public static void cafeStory()
     {
+        // Only challenge in the café
         if (cafeSelection == 0)
         {
             System.out.println(" Welcome to the Café! This is probably the best place to be in the university...\n" +
@@ -335,6 +351,7 @@ public class Story
             }
             challengeCount = challengeCount + 1;
         }
+        // After completed the challenge
         else
         {
             System.out.println(" At the moment the café is close. There is no challenge taking place in this location...");
@@ -347,10 +364,11 @@ public class Story
     }
 
     /**
-     * Graduation plot
+     * Graduation story plot
      */
     public static void graduationStory()
     {
+        // If the player has not yet completed all the 7 challenges.
         if (challengeCount < 7)
         {
             System.out.println(" Welcome to the graduation theatre! It's not your time yet...\n" +
@@ -363,21 +381,29 @@ public class Story
                     " they shall be very upset\n\n" +
                     " " + ConsoleColours.ANSI_BRIGHT_CYAN + "wdnh glsorpd" + ConsoleColours.ANSI_RESET + "\n");
         }
+        // When is time for graduation, the player has
+        // to have more than 50% (inclusive) of grades and score.
         else if (Game.currentPlayer.getGrades() >= 50 && Game.currentPlayer.getScore() >= 50)
         {
             System.out.println(" Congratulations and welcome to the graduation ceremony, you just finished university with success!\n" +
                     " Score: " + Game.currentPlayer.getScore() + "% | Grades: " + Game.currentPlayer.getGrades() + "%");
+            // Opens winner window
             Player.win = true;
         }
+        // If the player loses the game at graduation
         else
         {
             System.out.println(" Unfortunately you were not able to pass all the modules and failed university. You are now in great debt... \n" +
                     " Score: " + Game.currentPlayer.getScore() + "% | Grades: " + Game.currentPlayer.getGrades() + "%" +
                     " You just lost the game! \n");
-            Player.quit = true;
+            // Opens loser window
+            Player.lose = true;
         }
     }
 
+    /**
+     * Computing Lab story plot
+     */
     public static void labStory()
     {
         if ((labSelection > 0 && challengeCount < 4) || (labSelection > 2))
@@ -387,6 +413,7 @@ public class Story
         else if (labSelection > 0 && labSelection < 3 && challengeCount >= 4)
         {
             System.out.println(" You enter in the lab and realize that today you have a test about ArrayLists in Java.");
+            // If the player selected "yes" in the first challenge in the lab
             if (labSelection == 1)
             {
                 System.out.println(" You forgot to study after missing the class to go skate. Do you think you can help "
@@ -402,6 +429,7 @@ public class Story
                     " A- ArrayList in Java uses an index-based structure.        B- The size of ArrayList can increase or decrease at runtime. \n " +
                     " C- Duplicate elements are not allowed in the array list.   D- It allows to delete elements.");
             chooseStory();
+            // Answer 5 = C
             if (labSelection == 5)
             {
                 correct = correct + 1;
@@ -411,6 +439,7 @@ public class Story
                     " A- ArrayList<E> list = new Array();     B- ArrayList<E> list = new ArrayList<E>(); \n " +
                     " C- list = new Array(E);                 D- ArrayList<E> list = new ArrayList(<E>); ");
             chooseStory();
+            // Answer 4 = B
             if (labSelection == 4)
             {
                 correct = correct + 1;
@@ -420,6 +449,8 @@ public class Story
             if (correct == 0)
                 Game.currentPlayer.changeGrades(-5);
             challengeCount = challengeCount + 1;
+            // If the player answers the two questions
+            // correctly, we reward the player with 2 coins.
             if (correct == 2)
                 Player.getCoins(2);
         }
@@ -452,7 +483,9 @@ public class Story
     }
 
     /**
-     * Pub plot
+     * Pub story plot
+     * This location is used to buy off grades and score
+     * with coins found in the game to help the player win the game
      */
     public static void pubStory()
     {
@@ -473,6 +506,11 @@ public class Story
         System.out.println();
     }
 
+    /**
+     * This method is used for the challenges in lcoations.
+     * Creates a new scanner to read from input
+     * and assign the user's selection to a String.
+     */
     public static void chooseStory()
     {
         String selectionLine;
@@ -483,10 +521,19 @@ public class Story
         storySelection(selectionLine);
     }
 
+    /**
+     * Using the previous reader created
+     * by the chooseStory() method,
+     * to assign the selection to a variable used
+     * to create the story behind the game.
+     *
+     * @param selection
+     */
     public static void storySelection(String selection)
     {
         if (Map.currentLocation == Map.halls)
         {
+            // First challenge in halls
             if (hallsSelection == 0)
             {
                 switch (selection)
@@ -499,6 +546,7 @@ public class Story
                     }
                 }
             }
+            // Second challenge with girlfriend
             else if (Player.girlfriend)
             {
                 switch (selection)
@@ -511,6 +559,7 @@ public class Story
                     }
                 }
             }
+            // Second challenge without girlfriend
             else
             {
                 switch (selection)
@@ -539,6 +588,7 @@ public class Story
         }
         if (Map.currentLocation == Map.su)
         {
+            // First challenge in the SU, first input
             if (suSelection == 0)
             {
                 switch (selection)
@@ -552,6 +602,7 @@ public class Story
                     }
                 }
             }
+            // First challenge in the SU, second input
             else if (suSelection > 0 && suSelection <= 3)
             {
                 switch (selection)
@@ -564,8 +615,10 @@ public class Story
                     }
                 }
             }
+            // Second challenge in the SU
             else if (suSelection > 3)
             {
+                // WIth girlfriend
                 if (Player.girlfriend)
                 {
                     switch (selection)
@@ -579,6 +632,7 @@ public class Story
                         }
                     }
                 }
+                // Without girlfriend
                 if (!Player.girlfriend)
                 {
                     switch (selection)
@@ -597,6 +651,7 @@ public class Story
 
         if (Map.currentLocation == Map.lab)
         {
+            // First challenge in lab
             if (labSelection == 0)
             {
                 switch (selection)
@@ -609,6 +664,7 @@ public class Story
                     }
                 }
             }
+            // Second challenge in lab
             else
             {
                 switch (selection)
@@ -626,12 +682,13 @@ public class Story
         }
     }
 
+    /**
+     * If the challenge count has reached to 7,
+     * teleports the user to the graduation theatre.
+     */
     public static void checkGraduation()
     {
-        if (challengeCount == 7)
-        {
-            Map.enterLocation(Map.graduation);
-            System.out.println(ConsoleColours.ANSI_RED + " You have been teleported to the graduation theatre because you have finished all the challenges! \n" + ConsoleColours.ANSI_RESET);
-        }
+         Map.enterLocation(Map.graduation);
+         System.out.println(ConsoleColours.ANSI_RED + " You have been teleported to the graduation theatre because you have finished all the challenges! \n" + ConsoleColours.ANSI_RESET);
     }
 }
